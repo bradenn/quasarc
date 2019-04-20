@@ -1,0 +1,24 @@
+{
+  "name": "wikit",
+  "version": "1.0.0",
+  "description": "Reddit and Wiki had a baby",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"  
+},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bradenn/wikit.git"
+  },
+  "author": "Braden Nicholson (BN Media)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bradenn/wikit/issues"
+  },
+  "homepage": "https://github.com/bradenn/wikit#readme",
+  "dependencies": {
+    "express": "^4.16.4",
+    "mongodb": "^3.2.3"
+  }
+}
