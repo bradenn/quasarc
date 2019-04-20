@@ -6,4 +6,8 @@ router.use('/user', router.use('/new', require('../../user/new.js')));
 // Sending /user/new/:? to user/new.js
 router.use('/user', router.use('/exists', require('../../user/exists.js')));
 
+// Authentication
+// Sending /ath/api/:? to auth/token.js
+router.use('/auth', router.use('/token', require('../../auth/token.js')));
+
 module.exports = router;

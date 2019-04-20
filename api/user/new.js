@@ -6,44 +6,61 @@ var MongoClient = require('mongodb').MongoClient;
 var env = require("../config/env.json");
 var url = env.mongourl;
 
+const neededKeys = ['username', 'password', 'email', 'birthdate', 'key_id', 'token'];
+
 // Handle all requests with inputs
 router.get('/:request', function(req, res) {
   // Converting the request to JSON
-  var jsonRequest = JSON.parse(req.params.request);
-  newUser(jsonRequest, res);
-});
-
-
-// TODO: Clean up the spagetti :)
-function newUser(request, res) {
+  var request = JSON.parse(req.params.request);
   // Confirm that the JSON request string satisfies all inputs
-  // TODO: make this check more efficient
-  if (request.hasOwnProperty("username") &&
-    request.hasOwnProperty("password") && request.hasOwnProperty("email") &&
-    request.hasOwnProperty("birthdate")) {
-    // Connect to the Mondgo DB only if needed.
+  var checkAuth = true;
+  if (neededKeys.every(key => Object.keys(request).includes(key))) {
+    // authenticaton check
     MongoClient.connect(url, function(err, db) {
       if (err) throw err;
       var dbo = db.db("wikit");
-      var myobj = {
-        username: request.username,
-        password: request.password,
-        email: request.email,
-        birthdate: request.birthday
+      var query = {
+        key_id: request.key_id,
+        token: request.token
       };
-      dbo.collection("users").insertOne(myobj, function(err, reso) {
+      dbo.collection("tokens").find(query).toArray(function(err, result) {
         if (err) throw err;
-        res.json({
-          status: "success", message: "user added"
-        });
+
+        if (result.length >= 1) {
+          var myobj = {
+            username: request.username,
+            password: request.password,
+            email: request.email,
+            birthdate: request.birthday
+          };
+          dbo.collection("users").insertOne(myobj, function(err, reso) {
+            if (err) throw err;
+            res.json({
+              status: "success",
+              message: "user added"
+            });
+
+          });
+        } else {
+          res.json({
+            status: "error",
+            message: "authenticaton error"
+          });
+        }
+
         db.close();
       });
     });
+
   } else {
     res.json({
-      status: "error", message: "inputs not satisfied"
+      status: "error",
+      message: "inputs not satisfied"
     });
   }
+});
+
+function checkAuthentication(request) {
 
 }
 
