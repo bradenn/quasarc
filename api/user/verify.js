@@ -11,18 +11,21 @@ router.get('/', function(req, res) {
 // Handle all requests with inputs
 router.get('/:request', function(req, res) {
   // Converting the request to JSON
+  var jsono = JSON.parse(req.params.request);
   MongoClient.connect(url, function(err, db) {
     if (err) throw err;
     var dbo = db.db("wikit");
     var query = {
-      username: req.params.request
+      username: jsono.username,
+      password: jsono.password
     };
     dbo.collection("users").find(query).toArray(function(err, result) {
       if (err) throw err;
       if (result.length > 0) {
         res.json({
           status: "success",
-          value: true
+          value: true,
+          token: generateToken(jsono)
         });
       } else {
         res.json({
@@ -34,5 +37,32 @@ router.get('/:request', function(req, res) {
     });
   });
 });
+
+function generateToken(jsonRequest){
+  var token = genHash(64);
+  MongoClient.connect(url, function(err, db) {
+    if (err) throw err;
+    var dbo = db.db("wikit");
+    var myobj = {
+      username: jsonRequest.username,
+      token: token
+    };
+    dbo.collection("user_tokens").insertOne(myobj, function(err, reso) {
+      if (err) throw err;
+      db.close();
+    });
+  });
+  return token;
+}
+
+function genHash(length) {
+  var text = "";
+  var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789_=+!.,-";
+
+  for (var i = 0; i < length; i++)
+    text += possible.charAt(Math.floor(Math.random() * possible.length));
+
+  return text;
+}
 
 module.exports = router;
