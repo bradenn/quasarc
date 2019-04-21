@@ -10,7 +10,7 @@
       <div class="col-md-3"></div>
       <div class="col-md-6" style="margin-top:5%;">
         <div class="card bg-light">
-          <div class="card-header">Login</div>
+          <div class="card-header">Signup</div>
           <div class="card-body">
 
 
@@ -20,11 +20,16 @@
               <small id="usernameStatus" class="form-text text-muted"></small>
             </div>
             <div class="form-group">
+              <input type="text" onchange="" class="form-control" id="email"
+              placeholder="email">
+              <small id="emailStatus" class="form-text text-muted"></small>
+            </div>
+            <div class="form-group">
               <input type="password" class="form-control" id="password"
               placeholder="password">
             </div>
             <div class="form-group">
-            <button class="btn btn-primary" id="submitForm">Login</button>
+            <button class="btn btn-primary" id="submitForm">Sign up</button>
             </div>
           </div>
         </div>
@@ -36,5 +41,5 @@
 </body>
 
 <?php require("footer.php"); ?>
-<script src="scripts/login.js"></script>
+<script src="scripts/signup.js"></script>
 </html>
