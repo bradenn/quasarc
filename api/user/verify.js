@@ -1,7 +1,7 @@
 var router = require('express').Router();
 var mongo = require('mongodb');
 var MongoClient = require('mongodb').MongoClient;
-
+const crypto = require('crypto');
 // TODO: Fix whatever the hell this is...
 var env = require("../config/env.json");
 var url = env.mongourl;
@@ -15,9 +15,10 @@ router.get('/:request', function(req, res) {
   MongoClient.connect(url, function(err, db) {
     if (err) throw err;
     var dbo = db.db("wikit");
+    let hash = crypto.createHash('sha1').update(jsono.password).digest("hex");
     var query = {
       username: jsono.username,
-      password: jsono.password
+      password: hash
     };
     dbo.collection("users").find(query).toArray(function(err, result) {
       if (err) throw err;

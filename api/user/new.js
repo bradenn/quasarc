@@ -5,8 +5,10 @@ var MongoClient = require('mongodb').MongoClient;
 // TODO: Fix whatever the hell this is...
 var env = require("../config/env.json");
 var url = env.mongourl;
+const crypto = require('crypto')
 
-const neededKeys = ['username', 'password', 'email', 'birthdate', 'key_id', 'token'];
+
+const neededKeys = ['username', 'password', 'email', 'key_id', 'token'];
 
 // Handle all requests with inputs
 router.get('/:request', function(req, res) {
@@ -25,13 +27,12 @@ router.get('/:request', function(req, res) {
       };
       dbo.collection("tokens").find(query).toArray(function(err, result) {
         if (err) throw err;
-
+        let hash = crypto.createHash('sha1').update(request.password).digest("hex");
         if (result.length >= 1) {
           var myobj = {
             username: request.username,
-            password: request.password,
-            email: request.email,
-            birthdate: request.birthday
+            password: hash,
+            email: request.email
           };
           dbo.collection("users").insertOne(myobj, function(err, reso) {
             if (err) throw err;

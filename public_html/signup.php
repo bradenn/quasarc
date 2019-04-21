@@ -17,12 +17,12 @@
             <div class="form-group">
               <input type="text" onchange="" class="form-control" id="username"
               placeholder="username">
-              <small id="usernameStatus" class="form-text text-muted"></small>
+              <small id="usernameStatus" class="form-text text-muted">Make it unique, it's forever!</small>
             </div>
             <div class="form-group">
               <input type="text" onchange="" class="form-control" id="email"
               placeholder="email">
-              <small id="emailStatus" class="form-text text-muted"></small>
+              <small id="emailStatus" class="form-text text-muted">We won't spam you or share your info</small>
             </div>
             <div class="form-group">
               <input type="password" class="form-control" id="password"
