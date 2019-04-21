@@ -1,10 +1,7 @@
 # wikit
 Wiki and Reddit had a baby.
 
-API:
-
-
-New user:
+## API Reference 
 
 #### /api/user/new/
 ###### Add user to database
@@ -17,35 +14,18 @@ New user:
   token: token
 }
 ~~~
-###### Success:
+#### /api/user/verify/
+###### Verify user username and password
 ~~~
 {
-  "status": "success",
-  "message": "user has been created"
+  username: "user",
+  password: "hash",
+  key_id: key,
+  token: token
 }
 ~~~
-###### Fault:
+#### /api/user/check/
+###### Check if username is taken
 ~~~
-{
-  "status": "error",
-  "message": "error message"
-}
+/api/user/check/$username
 ~~~
-
-Check if username exists:
-
-localhost:3001/api/user/exists/*username*
-Response:
-{
-  "status": "success",
-  "value": true or false
-}
-
-{
-  "username": "test",
-  "password": "pass",
-  "email": "email",
-  "birthdate": "000",
-  "key_id": "dab6bb2aa7fc264e73af748e3eb0f453",
-  "token": "eurIKVa5VWMWmEsH9Qse6oadeJYYW2LRQiZHsX3kGcTwyE0TKC97rMB0a0LAqStj"
-}
