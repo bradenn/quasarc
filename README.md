@@ -6,20 +6,31 @@ API:
 
 New user:
 
-localhost:3001/api/user/new/:
+#### /api/user/new/
+###### Add user to database
+~~~
 {
   username: "user",
   password: "hash",
   email: "example@example.com",
-  birthdate: "1/1/19",
   key_id: key,
   token: token
 }
-Response:
+~~~
+###### Success:
+~~~
 {
   "status": "success",
   "message": "user has been created"
 }
+~~~
+###### Fault:
+~~~
+{
+  "status": "error",
+  "message": "error message"
+}
+~~~
 
 Check if username exists:
 
