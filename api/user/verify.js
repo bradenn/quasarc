@@ -14,7 +14,7 @@ router.get('/:request', function(req, res) {
   var jsono = JSON.parse(req.params.request);
   MongoClient.connect(url, function(err, db) {
     if (err) throw err;
-    var dbo = db.db("wikit");
+    var dbo = db.db(env.database);
     let hash = crypto.createHash('sha1').update(jsono.password).digest("hex");
     var query = {
       username: jsono.username,
@@ -43,7 +43,7 @@ function generateToken(jsonRequest){
   var token = genHash(64);
   MongoClient.connect(url, function(err, db) {
     if (err) throw err;
-    var dbo = db.db("wikit");
+    var dbo = db.db(env.database);
     var myobj = {
       username: jsonRequest.username,
       token: token

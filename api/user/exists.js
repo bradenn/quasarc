@@ -13,7 +13,7 @@ router.get('/:request', function(req, res) {
   // Converting the request to JSON
   MongoClient.connect(url, function(err, db) {
     if (err) throw err;
-    var dbo = db.db("wikit");
+    var dbo = db.db(env.database);
     var query = {
       username: req.params.request
     };

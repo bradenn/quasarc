@@ -20,7 +20,7 @@ router.get('/:request', function(req, res) {
     // authenticaton check
     MongoClient.connect(url, function(err, db) {
       if (err) throw err;
-      var dbo = db.db("wikit");
+      var dbo = db.db(env.database);
       var query = {
         key_id: request.key_id,
         token: request.token

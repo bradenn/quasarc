@@ -3,7 +3,6 @@ var mongo = require('mongodb');
 var MongoClient = require('mongodb').MongoClient;
 var hash = require('crypto').createHash("sha1");
 
-// TODO: Fix whatever the hell this is...
 var env = require("../config/env.json");
 var url = env.mongourl;
 
@@ -16,7 +15,7 @@ router.get('/:request', function(req, res) {
   if (neededKeys.every(key => Object.keys(jsonRequest).includes(key))) {
     MongoClient.connect(url, function(err, db) {
       if (err) throw err;
-      var dbo = db.db("wikit");
+      var dbo = db.db(env.database);
       var query = {
         key_id: jsonRequest.key_id,
         key_pass: jsonRequest.key_pass
@@ -50,7 +49,7 @@ function generateToken(jsonRequest, res){
   var token = genHash(64);
   MongoClient.connect(url, function(err, db) {
     if (err) throw err;
-    var dbo = db.db("wikit");
+    var dbo = db.db(env.database);
     var myobj = {
       key_id: jsonRequest.key_id,
       token: token
