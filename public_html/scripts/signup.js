@@ -12,7 +12,7 @@ $( "#submitForm" ).click(function() {
       key_id: "dab6bb2aa7fc264e73af748e3eb0f453",
       token: "eurIKVa5VWMWmEsH9Qse6oadeJYYW2LRQiZHsX3kGcTwyE0TKC97rMB0a0LAqStj"
     };
-    $.getJSON("http://localhost:3001/api/user/new/"+JSON.stringify(jsPre), function(data) {
+    $.getJSON("http://nossl.bradenn.com:3001/api/user/new/"+JSON.stringify(jsPre), function(data) {
       if(data.status == "success"){
         window.location.replace("/login.php");
       }else if (data.status == "error") {
@@ -25,7 +25,7 @@ $( "#submitForm" ).click(function() {
 });
 
 function checkUsername(username) {
-  $.getJSON("http://localhost:3001/api/user/exists/"+username, function(data) {
+  $.getJSON("http://nossl.bradenn.com:3001/api/user/exists/"+username, function(data) {
     $("#usernameStatus").html(data.value ? "<span class='text-danger'>Username taken, try another.</span>" : "<span class='text-success'>Username taken is not taken.</span>");
     return data.value;
   });
