@@ -1,5 +1,4 @@
-# wikit
-Wiki and Reddit had a baby.
+# Quasarc
 
 ## API Reference 
 
