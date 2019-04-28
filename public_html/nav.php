@@ -22,9 +22,10 @@
     <ul class="navbar-nav mr-right">
 
       <li class="nav-item">
-        <a class="nav-link" href="#">Login</a>
+        <a class="nav-link" href="#" id="username">Login</a>
       </li>
     </ul>
 
   </div>
 </nav>
+<script src="scripts/user.js"></script>

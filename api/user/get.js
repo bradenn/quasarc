@@ -8,7 +8,7 @@ var url = env.mongourl;
 const crypto = require('crypto')
 
 
-const neededKeys = ['user_token', 'key_id', 'token'];
+const neededKeys = ['user_token'];
 
 // Handle all requests with inputs
 router.get('/:request', function(req, res) {
@@ -18,7 +18,7 @@ router.get('/:request', function(req, res) {
   if (neededKeys.every(key => Object.keys(request).includes(key))) {
 
     // EXTREME SECURITY ISSUES
-    if (false) {
+    if (true) {
 
       MongoClient.connect(url, function(err, db) {
         if (err) throw err;
@@ -29,25 +29,9 @@ router.get('/:request', function(req, res) {
         dbo.collection("user_tokens").find(query).toArray(function(err, result) {
           if (err) throw err;
           if (result.length > 0) {
-            var query2 = {
-              username: result[0].username
-            };
-            dbo.collection("users").find(query2).toArray(function(err, results) {
-              if (err) throw err;
-              if (results.length > 0) {
-
-                res.json({
-                  status: "success",
-                  value: results[0]
-                });
-
-              } else {
-                res.json({
-                  status: "error",
-                  value: "username not found"
-                });
-              }
-              db.close();
+            res.json({
+              status: "success",
+              value: result[0].username
             });
           } else {
             res.json({
