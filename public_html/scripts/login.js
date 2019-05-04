@@ -3,11 +3,11 @@ $( "#submitForm" ).click(function() {
 
     var username = $("#username").val();
     var pass = $("#password").val();
-    var jsPre= '{"username": "'+username+'","password": "'+pass+'","key_id": "dab6bb2aa7fc264e73af748e3eb0f453","token": "eurIKVa5VWMWmEsH9Qse6oadeJYYW2LRQiZHsX3kGcTwyE0TKC97rMB0a0LAqStj"}';
-    $.getJSON("http://nossl.bradenn.com:3001/api/user/verify/"+jsPre, function(data) {
+    var jsPre= '{"username": "'+username+'","password": "'+pass+'","key_id": "df49cc23bf95d8c06a16a905f9d9ed2a","token": "na3DHEQ=gh!Y4xtdtLKvtdedFE2kn+qPx2nqzgRgnLT32ncEiZfhfE4x=opcg0AL"}';
+    $.getJSON("http://localhost:3001/api/user/verify/"+jsPre, function(data) {
       if(data.value){
         setCookie("token", data.token, 30);
-        window.location.replace("/index.php");
+        window.location.replace("index.html");
       }
     });
 
