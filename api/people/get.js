@@ -13,7 +13,6 @@ const neededKeys = ['user_id', 'key_id', 'token'];
 router.post('/', function(req, res) {
   // Converting the request to JSON
   var request = req.body;
-  console.log(req);
   // Confirm that the JSON request string satisfies all inputs
   if (neededKeys.every(key => Object.keys(request).includes(key))) {
 

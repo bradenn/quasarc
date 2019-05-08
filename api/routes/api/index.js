@@ -8,7 +8,7 @@ router.use('/user', router.use('/exists', require('../../user/exists.js')));
 // Sending /user/verify/:? to user/verify.js
 router.use('/user', router.use('/verify', require('../../user/verify.js')));
 // Sending /user/get/:? to user/get.js
-router.use('/user', router.use('/get', require('../../user/get.js')));
+router.use('/user/get', require('../../user/get.js'));
 
 // Sending /people/get/:? to people/get.js
 router.use('/people', router.use('/query', require('../../people/get.js')));
