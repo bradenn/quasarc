@@ -34,8 +34,17 @@
         </li>
 
       </ul>
-      <ul class="navbar-nav mr-right" id="navRightData">
-
+      <ul class="navbar-nav mr-right" id="nav">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navData" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            {{ username }}
+          </a>
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+            <a class="dropdown-item" href="#">profile</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#" onclick="logoutUser();">logout</a>
+          </div>
+        </li>
 
       </ul>
     </div>
@@ -46,9 +55,9 @@
       <div class="col-md-4"></div>
       <div class="col-md-4" style="text-align:center;">
         <div class="card bg-light">
-          <div class="card-header" id="wow">Info {{ product }}</div>
+          <div class="card-header">Info</div>
           <div class="card-body">
-              <p class="card-text">Before you can search for room mates, you must
+            <p class="card-text">Before you can search for room mates, you must
               complete the room mate profile questionair.</p>
             <button type="button" class="btn btn-primary">Complete Profile</button>
           </div>
@@ -94,14 +103,7 @@
 
 <script src="https://cdn.jsdelivr.net/npm/vue"></script>
 <script>
-const app = new Vue({
-  el: '#wow',
-  data: {
-    product: 'test'
-  }
-})
-
-
+  
 </script>
 <script src="scripts/user.js"></script>
 <script src="scripts/index.js"></script>

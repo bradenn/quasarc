@@ -6,6 +6,13 @@ $(document).ready(function() {
 
 });
 
+const errorHandle = new Vue({
+  el: '#error',
+  data: {
+    message: ''
+  }
+})
+
 $(document).keypress(function(event) {
   var keycode = (event.keyCode ? event.keyCode : event.which);
   if (keycode == '13') {
@@ -18,6 +25,8 @@ $("#submitForm").click(function() {
   loginUser();
 
 });
+
+
 
 function loginUser() {
   var username = $("#username").val();
@@ -37,7 +46,7 @@ function loginUser() {
           setCookie("token", data.token, 30);
           window.location.replace("index.html");
         } else {
-          $("#bodyDataError").show();
+          errorHandle.message = "Incorrect username or Password.";
         }
     },
     failure: function(errMsg) {
