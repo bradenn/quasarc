@@ -13,7 +13,7 @@ const neededKeys = ['username', 'password', 'email', 'key_id', 'token'];
 // Handle all requests with inputs
 router.get('/:request', function(req, res) {
   // Converting the request to JSON
-  var request = JSON.parse(req.params.request);
+  var request = req.body;
   // Confirm that the JSON request string satisfies all inputs
   var checkAuth = true;
   if (neededKeys.every(key => Object.keys(request).includes(key))) {

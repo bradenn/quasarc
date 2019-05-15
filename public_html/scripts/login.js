@@ -22,15 +22,29 @@ $("#submitForm").click(function() {
 function loginUser() {
   var username = $("#username").val();
   var pass = $("#password").val();
-  var jsPre = '{"username": "' + username + '","password": "' + pass + '","key_id": "df49cc23bf95d8c06a16a905f9d9ed2a","token": "na3DHEQ=gh!Y4xtdtLKvtdedFE2kn+qPx2nqzgRgnLT32ncEiZfhfE4x=opcg0AL"}';
-  $.getJSON("http://localhost:3001/api/user/verify/" + jsPre, function(data) {
-    if (data.value) {
-      setCookie("token", data.token, 30);
-      window.location.replace("index.html");
-    } else {
-      $("#bodyDataError").show();
+  var jsPre = '{"username": "' + username + '","password": "' + pass + '","key_id": "df49cc23bf95d8c06a16a905f9d9ed2a"}';
+
+  $.ajax({
+    type: "POST",
+    url: "http://localhost:3001/api/user/verify/",
+    // The key needs to match your method's input parameter (case-sensitive).
+    data: jsPre,
+    contentType: "application/json; charset=utf-8",
+    dataType: "json",
+    success: function(data) {
+
+        if (data.value) {
+          setCookie("token", data.token, 30);
+          window.location.replace("index.html");
+        } else {
+          $("#bodyDataError").show();
+        }
+    },
+    failure: function(errMsg) {
+      alert(errMsg);
     }
   });
+
 }
 
 
