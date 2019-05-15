@@ -1,18 +1,20 @@
-$(document).ready(function() {
-  if (getCookie("token") != null) {
-    loadUser();
-  } else {
-
-  }
-});
-
-
 const nav = new Vue({
   el: '#nav',
   data: {
     username: '---'
   }
 })
+
+$(document).ready(function() {
+  if (getCookie("token") != null) {
+    loadUser();
+  } else {
+    nav.message = "Login";
+  }
+});
+
+
+
 
 function loadUser() {
 
