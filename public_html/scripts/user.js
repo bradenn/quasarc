@@ -5,11 +5,13 @@ const nav = new Vue({
   }
 })
 
+
+
 $(document).ready(function() {
   if (getCookie("token") != null) {
     loadUser();
   } else {
-    nav.message = "Login";
+    nav.username = "Login";
   }
 });
 
