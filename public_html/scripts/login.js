@@ -25,7 +25,7 @@ $("#submitForm").click(function() {
 function loginUser() {
   var username = $("#username").val();
   var password = $("#password").val();
-  
+
   var load = {
     username: username,
     password: password,

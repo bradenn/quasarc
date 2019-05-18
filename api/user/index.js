@@ -34,15 +34,13 @@ router.post('/', function(req, res) {
           };
           dbo.collection("users").insertOne(myobj, function(err, reso) {
             if (err) throw err;
-            res.json({
-              status: 201,
+            res.status(201).json({
               message: "User added to database."
             });
 
           });
         } else {
-          res.json({
-            status: 401,
+          res.status(401).json({
             message: "authenticaton error"
           });
         }
@@ -52,8 +50,7 @@ router.post('/', function(req, res) {
     });
 
   } else {
-    res.json({
-      status: 400,
+    res.status(400).json({
       message: "inputs not satisfied"
     });
   }
