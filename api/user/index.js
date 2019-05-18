@@ -6,8 +6,7 @@ const crypto = require('crypto');
 var env = require("../config/env.json");
 var url = env.mongourl;
 
-
-// Handle all requests with inputs
+// Insert user into database (Sign up)
 router.post('/', function(req, res) {
   const neededKeys = ['username', 'password', 'email', 'key_id', 'token'];
   // Converting the request to JSON
@@ -36,14 +35,14 @@ router.post('/', function(req, res) {
           dbo.collection("users").insertOne(myobj, function(err, reso) {
             if (err) throw err;
             res.json({
-              status: "success",
-              message: "user added"
+              status: 201,
+              message: "User added to database."
             });
 
           });
         } else {
           res.json({
-            status: "error",
+            status: 401,
             message: "authenticaton error"
           });
         }
@@ -54,14 +53,14 @@ router.post('/', function(req, res) {
 
   } else {
     res.json({
-      status: "error",
+      status: 400,
       message: "inputs not satisfied"
     });
   }
 });
 
 
-// Handle all requests with inputs
+// Check if user exists (Login)
 router.get('/:body', function(req, res) {
   const neededKeys = ['username', 'password', 'key_id'];
   // Converting the request to JSON
@@ -78,15 +77,12 @@ router.get('/:body', function(req, res) {
       dbo.collection("users").find(query).toArray(function(err, result) {
         if (err) throw err;
         if (result.length > 0) {
-          res.json({
-            status: "success",
-            value: true,
+          res.status(200).json({
             token: generateToken(jsono)
           });
         } else {
-          res.json({
-            status: "success",
-            value: false
+          res.status(204).json({
+            error: "incorrect"
           });
         }
         db.close();

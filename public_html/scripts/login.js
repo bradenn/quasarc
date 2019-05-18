@@ -1,9 +1,7 @@
 $(document).ready(function() {
-  $("#bodyDataError").hide();
   if (getCookie("token") != null) {
     window.location.replace("index.html");
-  } else {}
-
+  }
 });
 
 const errorHandle = new Vue({
@@ -11,7 +9,7 @@ const errorHandle = new Vue({
   data: {
     message: ''
   }
-})
+});
 
 $(document).keypress(function(event) {
   var keycode = (event.keyCode ? event.keyCode : event.which);
@@ -21,40 +19,34 @@ $(document).keypress(function(event) {
 });
 
 $("#submitForm").click(function() {
-
   loginUser();
-
 });
-
-
 
 function loginUser() {
   var username = $("#username").val();
-  var pass = $("#password").val();
-  var jsPre = '{"username": "' + username + '","password": "' + pass + '","key_id": "df49cc23bf95d8c06a16a905f9d9ed2a"}';
+  var password = $("#password").val();
+  
+  var load = {
+    username: username,
+    password: password,
+    key_id: "df49cc23bf95d8c06a16a905f9d9ed2a"
+  };
 
   $.ajax({
     type: "GET",
-    url: "http://localhost:3001/api/user/"+jsPre,
-    // The key needs to match your method's input parameter (case-sensitive).
-    contentType: "application/json; charset=utf-8",
-    dataType: "json",
-    success: function(data) {
-
-        if (data.value) {
-          setCookie("token", data.token, 30);
-          window.location.replace("index.html");
-        } else {
-          errorHandle.message = "Incorrect username or Password.";
-        }
-    },
-    failure: function(errMsg) {
-      alert(errMsg);
+    url: "http://localhost:3001/api/user/" + JSON.stringify(load),
+    statusCode: {
+      200: function(data) {
+        setCookie("token", data.token, 30);
+        window.location.replace("index.html");
+      },
+      204: function() {
+        errorHandle.message = "Incorrect username or Password.";
+      }
     }
   });
 
 }
-
 
 function setCookie(name, value, days) {
   var expires = "";
