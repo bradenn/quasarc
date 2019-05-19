@@ -1,22 +1,46 @@
-const nav = new Vue({
-  el: '#nav',
-  data: {
-    username: '---'
-  }
-})
+
+const logged = `
+  <li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" href="#" id="navData" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      {{ username }}
+    </a>
+    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+      <a class="dropdown-item" href="profile.html" onclick="">profile</a>
+      <a class="dropdown-item" href="#" onclick="logoutUser();">logout</a>
+    </div>
+  </li>
+
+`;
+
+const newLog = `
+<li class="nav-item">
+  <a class="nav-link" href="login.html">Login</a>
+</li>
+<li class="nav-item">
+  <a class="nav-link" href="register.html">Signup</a>
+</li>
+`;
+
+
 
 
 
 $(document).ready(function() {
   if (getCookie("token") != null) {
+    $("#nav").html(logged);
     loadUser();
   } else {
-    nav.username = "Login";
+    $("#nav").html(newLog);
   }
 });
 
 
-
+const nav = new Vue({
+  el: '#nav',
+  data: {
+    username: 'loading...'
+  }
+})
 
 function loadUser() {
 
@@ -44,7 +68,7 @@ function loadUser() {
 
 function logoutUser(){
   eraseCookie("token");
-  loadDefault();
+  $("#nav").html(newLog);
 }
 function getCookie(name) {
   var nameEQ = name + "=";
