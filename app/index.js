@@ -1,4 +1,4 @@
-const env = require("./config/env.json");
+ const env = require("./config/env.json");
 var express = require('express')
 var app = express();
 app.use(function(req, res, next) {
@@ -7,7 +7,8 @@ app.use(function(req, res, next) {
   next();
 });
 app.use(express.json());
-app.use('/api', require('./routes/'));
+app.use('/api', require('./routes/api.js'));
+app.use('/', require('./routes/'));
 
 
 app.listen(env.port);
