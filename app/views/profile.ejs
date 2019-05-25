@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include("partials/header"); %>
+
+<body>
+
+  <%- include("partials/nav"); %>
+  <br>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4"></div>
+      <div class="col-md-4">
+        <div class="card bg-light">
+          <div class="card-header">profile</div>
+          <div class="card-body">
+            <p class="card-text">
+              <table style="width:100%;">
+                <tbody>
+                  <tr>
+                    <th>username</th>
+
+                    <th class="text-muted"><%= user.username %></th>
+                  </tr>
+                  <tr>
+                    <th>email</th>
+
+                    <th><%= user.email %></th>
+                  </tr>
+
+              </table>
+
+
+            </p>
+          </div>
+        </div>
+
+      </div>
+      <div class="col-md-4"></div>
+    </div>
+
+  </div>
+
+</body>
+
+</html>

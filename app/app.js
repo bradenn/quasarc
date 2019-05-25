@@ -30,12 +30,13 @@ app.use(session({
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-
+app.set('view engine', 'ejs');
 // serve static files from template
 app.use(express.static(__dirname + '/public'));
 
 // include routes
 var routes = require('./routes/');
+
 app.use('/', routes);
 
 // catch 404 and forward to error handler
@@ -54,6 +55,6 @@ app.use(function (err, req, res, next) {
 
 
 // listen on port 3000
-app.listen(3000, function () {
-  console.log('Express app listening on port 3000');
+app.listen(env.port, function () {
+  console.log('Express app listening on port '+ env.port);
 });

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include("partials/header"); %>
+
+<body>
+
+  <%- include("partials/nav"); %>
+  <br>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4"></div>
+      <div class="col-md-4" style="text-align:center;">
+        <div class="card bg-light">
+          <div class="card-header">Info</div>
+          <div class="card-body">
+            <p class="card-text">Before you can search for room mates, you must
+              complete the room mate profile questionair.</p>
+            <button type="button" class="btn btn-primary">Complete Profile</button>
+          </div>
+        </div>
+
+      </div>
+      <div class="col-md-4"></div>
+    </div>
+    <div class="row" hidden=true>
+      <div class="col-md-8">
+        <div class="card bg-light">
+          <div class="card-header">HD3892<span class="float-right">97% match</span></div>
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-6">
+                <p class="card-text">
+                  <span>Gender: <span class="text-primary" id="gender"></span></span><br>
+                  <span>Sexuality: <span class="text-primary" id="sexuality"></span></span><br>
+                  <span>Age: <span class="text-primary" id="age"></span></span><br>
+
+                  <span>Smokes: <span class="text-primary" id="smokes"></span></span><br>
+                  <span>Approves Smokers: <span class="text-primary" id="smokers"></span></span><br>
+
+                  <span>Dorm Activities: <span class="text-primary" id="activity"></span></span><br>
+                  <span>Dorm Prefrence: <span class="text-primary" id="roomtype"></span></span><br>
+                </p>
+              </div>
+              <div class="col-md-6">
+                <p class="card-text">
+                  <span>Description: <span class="text-secondary" id="desc"></span></span><br>
+                </p>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</body>
+
+</html>

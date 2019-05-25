@@ -45,13 +45,13 @@
           <div class="card-header">Login</div>
           <div class="card-body">
 
-            <form action="/" method="post">
+            <form action="/login" method="post">
               <div class="form-group">
-                <input type="text" onchange="" class="form-control" id="logemail" placeholder="email">
+                <input type="text" onchange="" class="form-control" id="logemail" name="logemail" placeholder="email">
                 <small id="usernameStatus" class="form-text text-muted"></small>
               </div>
               <div class="form-group">
-                <input type="password" class="form-control" id="logpassword" placeholder="password">
+                <input type="password" class="form-control" id="logpassword" name="logpassword" placeholder="password">
               </div>
               <div class="form-group">
                 <input class="btn btn-primary" type="submit" value="Login">
@@ -65,7 +65,7 @@
           <div class="card-header">Register</div>
           <div class="card-body">
 
-            <form id="login" action="/" method="post" onsubmit="event.preventDefault(); validateMyForm();" >
+            <form id="login" action="/login" method="post" onsubmit="event.preventDefault(); validateMyForm();" >
               <div class="form-group">
                 <input type="text" onchange="" class="form-control" id="username" name="username" placeholder="username">
                 <small id="usernameStatus" class="form-text text-muted">Make it unique, it's forever!</small>
@@ -96,12 +96,6 @@
 </body>
 <script type="text/javascript">
 
-  const errorHandler = new Vue({
-    el: '#app',
-    data: {
-      message: ''
-    }
-  })
 
   var passWordField = document.getElementById('password')
   var passWordConfirmField = document.getElementById('password_conf')
@@ -109,7 +103,7 @@
 
   function validateMyForm() {
     if (passWordField.value != passWordConfirmField.value) {
-      errorHandler.message = "Passwords do not match. Please try again.";
+       var c = "Passwords do not match. Please try again.";
     } else {
       form.submit()
     }
