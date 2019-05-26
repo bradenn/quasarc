@@ -1,11 +1,11 @@
 {
-  "name": "wikit",
+  "name": "quasarc",
   "version": "1.0.0",
   "description": "Reddit and Wiki had a baby",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js"
+    "start": "node app.js"
   },
   "repository": {
     "type": "git",
@@ -25,5 +25,6 @@
     "express-session": "^1.16.1",
     "mongodb": "^3.2.3",
     "mongoose": "^5.5.9"
-  }
+  },
+  "devDependencies": {}
 }

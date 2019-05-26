@@ -1,0 +1,27 @@
+body {
+  background-color: rgba(18, 18, 18, 1);
+  font-family: 'IBM Plex Sans', sans-serif;
+}
+
+.navbar {
+  background-color: rgba(31, 31, 31, 1) !important;
+  color: rgba(226, 226, 226, 1) !important;
+}
+
+.navbar a {
+  color: rgba(226, 226, 226, 1) !important;
+}
+
+.nav-drop{
+  background-color: rgba(31, 31, 31, 1) !important;
+  border: 1px solid rgba(31, 31, 31, 1);
+}
+.nav-drop:hover{
+  border: 1px solid rgba(97, 97, 97, 1);
+}
+
+.username{
+  font-size: 12px;
+  color:rgb(215, 218, 220);
+  line-height: 16px;
+}
