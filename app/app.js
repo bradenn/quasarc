@@ -7,7 +7,7 @@ var session = require('express-session');
 var MongoStore = require('connect-mongo')(session);
 
 //connect to MongoDB
-mongoose.connect(env.mongourl, { useNewUrlParser: false });
+mongoose.connect(env.mongourl);
 var db = mongoose.connection;
 mongoose.set('useCreateIndex', true);
 //handle mongo error

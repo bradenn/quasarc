@@ -7,29 +7,60 @@
   <div class="collapse navbar-collapse" id="navbarColor01">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+        <div class="dropdown">
+          <button class="btn btn-secondary nav-drop dropdown-toggle selection-dropdown" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            All Content<span class="float-right"><i class="fas fa-caret-down"></i></span>
+          </button>
+          <div class="dropdown-menu selection-dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" href="/profile">Top</a>
+            <a class="dropdown-item" href="/profile">News</a>
+            <a class="dropdown-item" href="/settings">Video</a>
+
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="/logout">other</a>
+          </div>
+        </div>
       </li>
 
     </ul>
     <ul class="navbar-nav mr-right" id="nav">
+      <button class="btn btn-secondary nav-drop username"><i class="fas fa-envelope"></i></button>
+      <button class="btn btn-secondary nav-drop username"><i class="fas fa-plus-square"></i></button>
       <% if(user != null){ %>
-        <div class="dropdown ">
-          <button class="btn btn-secondary nav-drop dropdown-toggle username" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <%= user.username %>
-          </button>
-          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
-            <a class="dropdown-item" href="/profile">profile</a>
-            <a class="dropdown-item" href="/settings">settings</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="/logout">logout</a>
-          </div>
+      <div class="dropdown ">
+        <button class="btn btn-secondary nav-drop dropdown-toggle username" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <%= user.username %>&nbsp;&nbsp;<span class="float-right"><i class="fas fa-caret-down"></i></span>
+        </button>
+        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+          <a class="dropdown-item" href="/profile">profile</a>
+          <a class="dropdown-item" href="/settings">settings</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="/logout">logout</a>
         </div>
+      </div>
 
       <% } else{ %>
       <li class="nav-item">
         <a class="nav-link" href="/login">Login</a>
       </li>
       <% } %>
+
+    </ul>
+  </div>
+</nav>
+<nav class="navbar navbar-expand-lg bottom-nav">
+  <div class="container">
+    <ul class="navbar-nav mr-auto">
+      <div class="dropdown">
+        <button class="btn btn-secondary nav-drop dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <i class="fas fa-filter"></i>&nbsp;&nbsp;<span class="float-right"><i class="fas fa-caret-down"></i></span>
+        </button>
+        <div class="dropdown-menu sort-drop-menu" aria-labelledby="dropdownMenuButton">
+          <a class="dropdown-item" href="/profile"><i class="fas fa-fire"></i>&nbsp;Hot</a>
+          <a class="dropdown-item" href="/profile"><i class="fas fa-arrow-up"></i>&nbsp;Top</a>
+          <a class="dropdown-item" href="/settings"><i class="fas fa-certificate"></i>&nbsp;New</a>
+        </div>
+      </div>
 
     </ul>
   </div>

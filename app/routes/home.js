@@ -1,22 +1,25 @@
 var router = require('express').Router();
 var User = require('../models/user');
-
+var Text = require('../models/textpost');
 // GET route for reading data
-router.get('/', function (req, res, next) {
+router.get('/', function(req, res, next) {
 
   User.findById(req.session.userId)
-    .exec(function (error, user) {
+    .exec(function(error, user) {
       if (error) {
         return next(error);
       } else {
-        return res.render("index", { user: user });
+
+        return res.render("index", {
+          user: user
+        });
       }
     });
 });
 
 
 //POST route for updating data
-router.post('/', function (req, res, next) {
+router.post('/', function(req, res, next) {
   // confirm that user typed same password twice
   if (req.body.password !== req.body.passwordConf) {
     var err = new Error('Passwords do not match.');
@@ -36,7 +39,7 @@ router.post('/', function (req, res, next) {
       password: req.body.password,
     }
 
-    User.create(userData, function (error, user) {
+    User.create(userData, function(error, user) {
       if (error) {
         return next(error);
       } else {
@@ -46,7 +49,7 @@ router.post('/', function (req, res, next) {
     });
 
   } else if (req.body.logemail && req.body.logpassword) {
-    User.authenticate(req.body.logemail, req.body.logpassword, function (error, user) {
+    User.authenticate(req.body.logemail, req.body.logpassword, function(error, user) {
       if (error || !user) {
         var err = new Error('Wrong email or password.');
         err.status = 401;
