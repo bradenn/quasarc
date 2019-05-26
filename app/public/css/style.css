@@ -3,6 +3,15 @@ body {
   font-family: 'IBM Plex Sans', sans-serif;
 }
 
+.ql-snow {
+  background-color: #fff;
+}
+
+.ql-editor {
+  min-height: 100px;
+  color:rgba(31, 31, 31, 1);
+}
+
 .navbar {
   background-color: rgba(31, 31, 31, 1) !important;
   color: rgba(226, 226, 226, 1) !important;
@@ -55,12 +64,13 @@ body {
 .card-title-span {
   color: rgb(215, 218, 220);
   font-size: 18px;
-  padding:16px 0px 0px 16px;
+  padding: 16px 0px 0px 16px;
 }
+
 .card-sub-span {
   color: rgba(215, 218, 220, 0.5);
   font-size: 12px;
-  padding:0px 0px 0px 16px;
+  padding: 0px 0px 0px 16px;
 }
 
 .selection-dropdown {

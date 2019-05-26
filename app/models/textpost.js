@@ -14,6 +14,12 @@ var TextSchema = new mongoose.Schema({
     required: true,
     trim: true
   },
+  section: {
+    type: String,
+    unique: false,
+    required: true,
+    trim: true
+  },
   user: {
     type: String,
     required: true,

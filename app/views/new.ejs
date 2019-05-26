@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<script src="//cdn.quilljs.com/1.3.6/quill.min.js"></script>
+<link href="//cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+<%- include("partials/header") %>
+<script type="application/x-javascript">
+  addEventListener("load", function() {
+    setTimeout(hideURLbar, 0);
+  }, false);
+
+  function hideURLbar() {
+    window.scrollTo(0, 1);
+  }
+</script>
+<style>
+  body {
+    font-family: 'IBM Plex Sans', sans-serif;
+  }
+
+  /* Set black background color, white text and some padding */
+  footer {
+    background-color: #555;
+    color: white;
+    padding: 15px;
+  }
+</style>
+
+<%- include("partials/nav") %>
+
+<body>
+  <br>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8" style="margin-top:5%;">
+        <div class="card bg-light">
+          <div class="card-header">New Post</div>
+          <div class="card-body">
+
+            <form id="post" action="/new" method="post">
+              <div class="row">
+                <div class="col-md-8">
+                  <div class="form-group">
+                    <label>Title</label>
+                    <input type="text" onchange="" class="form-control" id="title" name="title" placeholder="Title">
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label>Post section</label>
+                    <select class="form-control" id="section" name="section">
+                      <option>1</option>
+                      <option>2</option>
+                      <option>3</option>
+                      <option>4</option>
+                      <option>5</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label>Post</label>
+                <textarea class="form-control" id="body" name="body" rows="3"></textarea>
+              </div>
+
+              <div class="form-group">
+                <input class="btn btn-primary" type="submit" value="Post">
+              </div>
+
+
+            </form>
+
+          </div>
+        </div>
+      </div>
+      <div class="col-md-2" style="margin-top:5%;"></div>
+    </div>
+  </div>
+
+</body>
+<script type="text/javascript">
+  var quill = new Quill('#editor-container', {
+    modules: {
+      toolbar: [
+        ['bold', 'italic'],
+        ['link', 'blockquote'],
+        [{
+          list: 'ordered'
+        }, {
+          list: 'bullet'
+        }]
+      ]
+    },
+    placeholder: 'Write your post here',
+    theme: 'snow'
+  });
+</script>
+
+</html>

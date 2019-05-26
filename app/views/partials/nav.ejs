@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg">
-  <a class="navbar-brand" href="#"><span class="text-primary">Q</span>uasarc</a>
+  <a class="navbar-brand" href="/"><span class="text-primary">Q</span>uasarc</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -24,8 +24,8 @@
 
     </ul>
     <ul class="navbar-nav mr-right" id="nav">
-      <button class="btn btn-secondary nav-drop username"><i class="fas fa-envelope"></i></button>
-      <button class="btn btn-secondary nav-drop username"><i class="fas fa-plus-square"></i></button>
+      <a href="/messages" class="btn btn-secondary nav-drop username"><i class="fas fa-envelope"></i></a>
+      <a href="/new" class="btn btn-secondary nav-drop username"><i class="fas fa-plus-square"></i></a>
       <% if(user != null){ %>
       <div class="dropdown ">
         <button class="btn btn-secondary nav-drop dropdown-toggle username" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -41,13 +41,14 @@
 
       <% } else{ %>
       <li class="nav-item">
-        <a class="nav-link" href="/login">Login</a>
+        <a class="nav-link" href="/login">Login / Signup</a>
       </li>
       <% } %>
 
     </ul>
   </div>
 </nav>
+<% if(typeof post != 'undefined'){ %>
 <nav class="navbar navbar-expand-lg bottom-nav">
   <div class="container">
     <ul class="navbar-nav mr-auto">
@@ -65,3 +66,4 @@
     </ul>
   </div>
 </nav>
+<% } %>

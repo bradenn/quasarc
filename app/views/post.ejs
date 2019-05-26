@@ -7,15 +7,17 @@
   <%- include("partials/nav"); %>
   <br>
   <div class="container">
-    <% for (var i = 0; i < post.length; i++) { %>
+
     <div class="row" style="margin-bottom: 4px;">
 
       <div class="col-md-8">
         <div class="card bg-light">
-          <span class="card-title-span"><%= post[i].title %></span>
-          <span class="card-sub-span">by <%= post[i].user %></span>
+          <span class="card-title-span"><%= post.title %>
+            
+          </span>
+          <span class="card-sub-span">by <%= post.user %></span>
           <div class="card-body">
-            <p class="card-text"><%= post[i].post %></p>
+            <p class="card-text"><%= post.post %></p>
 
           </div>
         </div>
@@ -24,7 +26,6 @@
 
       <div class="col-md-4"></div>
     </div>
-    <% } %>
 
   </div>
 
