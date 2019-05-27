@@ -90,6 +90,7 @@ body {
   color: rgb(215, 218, 220);
   font-size: 18px;
   padding: 16px 0px 0px 16px;
+  margin-bottom: 0;
 }
 
 .card {
@@ -108,7 +109,7 @@ body {
 .card-sub-span {
   color: rgba(215, 218, 220, 0.5);
   font-size: 12px;
-  padding: 0px 0px 0px 16px;
+  padding: 0px 0px 0px 0px;
 }
 
 .selection-dropdown {
