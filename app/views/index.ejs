@@ -11,14 +11,16 @@
     <div class="row" style="margin-bottom: 4px;">
 
       <div class="col-md-8">
-        <div class="card bg-light">
-          <span class="card-title-span"><%= post[i].title %></span>
-          <span class="card-sub-span">by <%= post[i].user %></span>
-          <div class="card-body">
-            <p class="card-text"><%= post[i].post %></p>
+        <a href="/p/<%= post[i]._id %>" class="no-hover">
+          <div class="card bg-light">
+            <span class="card-title-span"><%= post[i].title %></span>
+            <span class="card-sub-span">by <%= post[i].user %> • <%= post[i].section %> </span>
+            <div class="card-body card-text-body-fade">
+              <p class="card-text card-text-fade"><%= post[i].post %></p>
 
+            </div>
           </div>
-        </div>
+        </a>
 
       </div>
 
