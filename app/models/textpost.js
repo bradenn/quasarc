@@ -4,9 +4,7 @@ var bcrypt = require('bcrypt');
 var TextSchema = new mongoose.Schema({
   title: {
     type: String,
-    unique: false,
-    required: true,
-    trim: true
+    required: true
   },
   post: {
     type: String,
@@ -20,7 +18,15 @@ var TextSchema = new mongoose.Schema({
     required: true,
     trim: true
   },
+  comments: [{
+    body: String,
+    user: String
+  }],
   user: {
+    type: String,
+    required: true,
+  },
+  date: {
     type: String,
     required: true,
   }

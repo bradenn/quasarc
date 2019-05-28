@@ -25,7 +25,6 @@ router.get('/', function(req, res, next) {
 //POST route for updating data
 router.post('/', function(req, res, next) {
   // confirm that user typed same password twice
-  console.log(req.body.body);
   if (req.body.title &&
     req.body.section &&
     req.body.body) {

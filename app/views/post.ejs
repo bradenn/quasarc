@@ -10,12 +10,12 @@
 
     <div class="row" style="margin-bottom: 16px;">
 
-      <div class="col-md-8">
+      <div class="col-md-9">
         <a href="/p/<%= post._id %>" class="no-hover">
           <div class="card bg-light">
             <p class="card-title-span"><%= post.title %></p>
             <div style="margin-left: 16px;">
-                <span class="card-sub-span">by <a href="/u/<%= post.user %>" class="card-sub-span"><%= post.user %></a></span>
+              <span class="card-sub-span">by <a href="/u/<%= post.user %>" class="card-sub-span"><%= post.user %></a></span>
             </div>
             <div class="card-body">
               <p class="card-text"><%= post.post %></p>
@@ -26,7 +26,37 @@
 
       </div>
 
-      <div class="col-md-4"></div>
+      <div class="col-md-3"></div>
+    </div>
+    <div class="row" style="margin-bottom: 16px;">
+      <div class="col-md-9" style="">
+        <div class="card bg-light">
+          <form id="post" action="/p/<%= post._id %>" class="comment-body" style="border:none; padding-left: 0;" method="post">
+            <div class="form-group">
+              <textarea class="form-control" id="body" name="body" rows="3"></textarea>
+            </div>
+            <div class="form-group">
+              <input class="btn btn-primary" type="submit" value="Post">
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="col-md-3"></div>
+    </div>
+    <div class="row" style="margin-bottom: 16px;">
+      <div class="col-md-9" style="margin-bottom: 16px;">
+        <div class="card bg-light">
+          <% for (var i = 0; i < post.comments.length; i++) { %>
+          <div class="comment-body">
+            <span class="comment-header"><%= post.comments[i].user %></span><br>
+            <span><%= post.comments[i].body %></span>
+          </div>
+          <% } %>
+        </div>
+      </div>
+
+
+      <div class="col-md-3"></div>
     </div>
 
   </div>
