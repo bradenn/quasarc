@@ -25,7 +25,8 @@
     "express-session": "^1.16.1",
     "faker": "^4.1.0",
     "mongodb": "^3.2.3",
-    "mongoose": "^5.5.9"
+    "mongoose": "^5.5.9",
+    "nodemailer": "^6.2.1"
   },
   "devDependencies": {}
 }

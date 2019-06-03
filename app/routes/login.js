@@ -1,6 +1,8 @@
 var router = require('express').Router();
 var User = require('../models/user');
 var Posts = require('../models/textpost');
+var nodemailer = require('nodemailer');
+var env = require("../config/env.json");
 
 // GET route for reading data
 router.get('/', function(req, res, next) {
@@ -32,17 +34,23 @@ router.post('/', function(req, res, next) {
     req.body.password &&
     req.body.passwordConf) {
 
+    let r = Math.random().toString(36).substring(7);
+
     var userData = {
       email: req.body.email,
       username: req.body.username,
       password: req.body.password,
+      code: r
     }
+
+
 
     User.create(userData, function(error, user) {
       if (error) {
         return next(error);
       } else {
         req.session.userId = user._id;
+
         return res.redirect('/');
       }
     });

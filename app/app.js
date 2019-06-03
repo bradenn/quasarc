@@ -7,13 +7,13 @@ var session = require('express-session');
 var MongoStore = require('connect-mongo')(session);
 
 //connect to MongoDB
-mongoose.connect(env.mongourl);
+mongoose.connect(env.mongourl, { useNewUrlParser: true });
 var db = mongoose.connection;
 mongoose.set('useCreateIndex', true);
 //handle mongo error
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function () {
-  // we're connected!
+  console.log('Connected to MongoDB with no errors.');
 });
 
 //use sessions for tracking logins
@@ -56,5 +56,5 @@ app.use(function (err, req, res, next) {
 
 // listen on port 3000
 app.listen(env.port, function () {
-  console.log('Express app listening on port '+ env.port);
+  console.log('Express server started. Listing on port '+ env.port+'.');
 });

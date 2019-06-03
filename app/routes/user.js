@@ -9,37 +9,38 @@ router.get('/', function(req, res, next) {
 
     router.get('/:username', function(req, res, next) {
       User.findOne({username: req.params.username})
-        .exec(function(error, user) {
+        .exec(function(error, target) {
           if (error) {
             return next(error);
           } else {
-            if(user == null){
+            if(target == null){
               res.redirect("/404");
             }else{
-
+              User.findById(req.session.userId)
+                .exec(function(error, user) {
+                  if (error) {
+                    return next(error);
+                  } else {
+                    Text.find({
+                        user: target.username
+                      })
+                      .exec(function(error, post) {
+                        if (error) {
+                          return next(error);
+                        } else {
+                          return res.render("user", {
+                            user: user,
+                            post: post,
+                            target: target
+                          });
+                        }
+                      });
+                  }
+                });
             }
           }
         });
-      User.findById(req.session.userId)
-        .exec(function(error, user) {
-          if (error) {
-            return next(error);
-          } else {
-            Text.find({
-                user: req.params.username
-              })
-              .exec(function(error, post) {
-                if (error) {
-                  return next(error);
-                } else {
-                  return res.render("user", {
-                    user: user,
-                    post: post
-                  });
-                }
-              });
-          }
-        });
+
     });
 
     module.exports = router;

@@ -3,35 +3,63 @@
 <%- include("partials/header"); %>
 
 <body>
-
   <%- include("partials/nav"); %>
   <br>
   <div class="container">
-    <% for (var i = 0; i < post.length; i++) { %>
+    <ul class="nav nav-tabs">
+      <li class="nav-item">
+        <a class="nav-link active" data-toggle="tab" href="#post">Posts</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" data-toggle="tab" href="#comments">Comments</a>
+      </li>
+    </ul>
+    <br>
     <div class="row" style="margin-bottom: 16px;">
-
       <div class="col-md-8">
-        <a href="/p/<%= post[i]._id %>" class="no-hover">
-          <div class="card bg-light">
-            <p class="card-title-span"><%= post[i].title %></p>
-            <div style="margin-left: 16px;">
-                <span class="card-sub-span">by <a href="/u/<%= post[i].user %>" class="card-sub-span"><%= post[i].user %></a></span>
+        <div class="tab-content">
+          <div class="tab-pane fade active show" id="post">
+            <% for (var i = 0; i < post.length; i++) { %>
+            <div class="row">
+              <div class="col-md-12">
+                <a href="/p/<%= post[i]._id %>" class="no-hover">
+                  <div class="card bg-light">
+                    <p class="card-title-span"><%= post[i].title %></p>
+                    <div style="margin-left: 16px;">
+                      <span class="card-sub-span">by <a href="/u/<%= post[i].user %>" class="card-sub-span"><%= post[i].user %></a></span>
+                    </div>
+                    <div class="card-body card-text-body-fade">
+                      <p class="card-text card-text-fade"><%= post[i].post %></p>
+                    </div>
+                  </div>
+                </a>
+              </div>
             </div>
-            <div class="card-body card-text-body-fade">
-              <p class="card-text card-text-fade"><%= post[i].post %></p>
-
+            <br>
+            <% } %>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card bg-light">
+              <p class="card-title-span">u/<%= target.username %></p>
+              <div style="margin-left: 16px;">
+                <%= target.bio %>
+              </div>
+              <br>
+              <div class="card-footer">
+                <span>Badges:</span>
+                <span style="font-size: 100%;"><%= target.badge.join("") %></span>
+              </div>
             </div>
           </div>
-        </a>
-
+        </div>
+        <br>
       </div>
-
-      <div class="col-md-4"></div>
     </div>
-    <% } %>
-
   </div>
-
 </body>
 
 </html>

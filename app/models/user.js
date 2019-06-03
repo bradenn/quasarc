@@ -8,6 +8,8 @@ var UserSchema = new mongoose.Schema({
     required: true,
     trim: true
   },
+  badge: [String],
+  bio: String,
   username: {
     type: String,
     unique: true,
@@ -17,7 +19,9 @@ var UserSchema = new mongoose.Schema({
   password: {
     type: String,
     required: true,
-  }
+  },
+  code: String,
+  verified: Boolean
 });
 
 //authenticate input against database

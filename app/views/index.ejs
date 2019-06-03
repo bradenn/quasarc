@@ -19,7 +19,18 @@
             <div class="card-body card-text-body-fade">
               <p class="card-text card-text-fade"><%= post[i].post %></p>
             </div>
-          <span style="margin-left: 16px; margin-bottom: 16px;"><%= post[i].comments.length %> Comments</span>
+            <span style="margin-left: 16px; margin-bottom: 16px;">
+              <a href="/p/<%= post[i]._id %>" style="text-decoration: none; color: inherit;">
+                <span><i class="fas fa-comment"></i>
+                  &nbsp;&nbsp;<%= post[i].comments.length %> Comments
+                </span>
+              </a>
+              <span style="margin-left: 16px; margin-bottom: 16px;">
+                <i class="fas fa-share"></i>
+                &nbsp;&nbsp;Share
+              </span>
+            </span>
+
           </div>
         </a>
       </div>

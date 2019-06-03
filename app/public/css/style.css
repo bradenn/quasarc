@@ -6,7 +6,12 @@ body {
 .ql-snow {
   background-color: #fff;
 }
-
+.bg-light{
+  background-color: rgba(31, 31, 31, 1) !important;
+}
+.card-footer{
+  border-top: 1px solid rgba(97, 97, 97, 0.5);
+}
 .card-text-body-fade {
   max-height: 220px;
 }
