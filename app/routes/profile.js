@@ -35,4 +35,27 @@ router.get('/', function(req, res, next) {
     });
 });
 
+router.post('/', function(req, res, next) {
+  var e = [];
+  if (req.body.pride === 'true') {
+    e.push("🏳️‍🌈");
+  }
+  if (req.body.usa === 'true') {
+    e.push("🇺🇸");
+  }
+  User.findOne({
+    _id: req.session.userId
+  }, function(err, user) {
+    user.badge = e;
+    user.save(function(err) {
+      if (err) {
+        console.error('ERROR!');
+      }
+    });
+  });
+
+
+  res.redirect("/profile");
+});
+
 module.exports = router;
