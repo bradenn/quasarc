@@ -1,4 +1,7 @@
 # Quasarc
+
+A beta version is now available at https://quasarc.bradenn.com
+
 Quasarc is a Node.js based media network. Quasarc uses Node, Express, EJS, MongoDB, Mongoose, and a plethera of other Node tools.
 This is a pet project of mine, this project gets repurposed quite often.
 
