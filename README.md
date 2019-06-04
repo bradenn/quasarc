@@ -1,4 +1,6 @@
 # Quasarc
+![GitHub release](https://img.shields.io/github/release-pre/bradenn/quasarc.svg)
+![GitHub top language](https://img.shields.io/github/languages/top/bradenn/quasarc.svg)
 
 A beta version is now available at https://quasarc.bradenn.com
 
