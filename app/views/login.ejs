@@ -24,7 +24,7 @@
   }
 </style>
 
-  <%- include("partials/nav") %>
+<%- include("partials/nav") %>
 
 <body>
   <br>
@@ -47,6 +47,8 @@
               <div class="form-group">
                 <input class="btn btn-primary" type="submit" value="Login">
               </div>
+
+              <span class="text-danger"><% if(typeof error != "undefined") { if(error.type === "login"){ %> <%= error.message %> <% } } %></span>
             </form>
           </div>
         </div>
@@ -56,7 +58,7 @@
           <div class="card-header">Register</div>
           <div class="card-body">
 
-            <form id="login" action="/login" autocomplete="new-password" method="post" onsubmit="event.preventDefault(); validateMyForm();" >
+            <form id="login" action="/login" autocomplete="new-password" method="post" onsubmit="event.preventDefault(); validateMyForm();">
               <div class="form-group">
                 <input type="text" onchange="" autocomplete="off" class="form-control" id="username" name="username" placeholder="username">
                 <small id="usernameStatus" class="form-text text-muted">Make it unique, it's forever!</small>
@@ -74,7 +76,8 @@
               <div class="form-group">
                 <input class="btn btn-primary" type="submit" value="Register">
               </div>
-
+              <span class="text-danger"><% if(typeof error != "undefined") { if(error.type === "register"){ %> <%= error.message %> <% } } %></span>
+              <span class="text-warning" id="match"></span>
 
             </form>
 
@@ -86,18 +89,17 @@
 
 </body>
 <script type="text/javascript">
-
-
   var passWordField = document.getElementById('password')
   var passWordConfirmField = document.getElementById('password_conf')
   var form = document.getElementById('login')
 
   function validateMyForm() {
     if (passWordField.value != passWordConfirmField.value) {
-       var c = "Passwords do not match. Please try again.";
+      $("#match").html("Passwords do not match");
     } else {
       form.submit()
     }
   }
 </script>
+
 </html>

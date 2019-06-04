@@ -58,18 +58,40 @@ router.post('/', function(req, res, next) {
   } else if (req.body.logemail && req.body.logpassword) {
     User.authenticate(req.body.logemail, req.body.logpassword, function(error, user) {
       if (error || !user) {
-        var err = new Error('Wrong email or password.');
-        err.status = 401;
-        return next(err);
+        User.findById(req.session.userId)
+          .exec(function(error, user) {
+            if (error) {
+              return next(error);
+            } else {
+              return res.render("login", {
+                user: user,
+                error: {
+                  type: "login",
+                  message: "Incorrect username or password"
+                }
+              });
+            }
+          });
       } else {
         req.session.userId = user._id;
         return res.redirect('/');
       }
     });
   } else {
-    var err = new Error('All fields required.');
-    err.status = 400;
-    return next(err);
+    User.findById(req.session.userId)
+      .exec(function(error, user) {
+        if (error) {
+          return next(error);
+        } else {
+          return res.render("login", {
+            user: user,
+            error: {
+              type: "register",
+              message: "All fields must be complete"
+            }
+          });
+        }
+      });
   }
 })
 
