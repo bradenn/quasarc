@@ -10,3 +10,24 @@ I started this project with zero knowledge of Javascript or Node. I pretty much 
 ### Documentation
 The app model has recently been updated from an REST Api server-client system to a pure server-client model.
 ###### There is no longer a non-deprecated REST API. (One will be added later)
+
+#### The config file is excluded for security reasons
+You will need to generate your own with the following format.
+The file is app/config/env.json
+```
+{
+  "port": port,
+  "host": "host",
+  "mongourl": "mongodb://user:pass@host/db",
+  "database": "db",
+  "mail": {
+    "host": "host",
+    "post": 587,
+    "auth": {
+      "user": "email",
+      "pass": "pass"
+    }
+  }
+}
+
+```
