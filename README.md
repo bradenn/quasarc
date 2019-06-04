@@ -29,5 +29,4 @@ The file is app/config/env.json
     }
   }
 }
-
 ```
