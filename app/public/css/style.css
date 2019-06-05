@@ -17,10 +17,7 @@ body {
 }
 
 .comment-body {
-  margin-left: 16px;
-  margin-right: 16px;
-  margin-top: 16px;
-  margin-bottom: 16px;
+  margin: 16px;
   padding-left:8px;
   border-left: 3px solid rgba(226, 226, 226, 0.5);
 }

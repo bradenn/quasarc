@@ -3,6 +3,7 @@ var User = require('../models/user');
 var Text = require('../models/textpost');
 var Comment = require('../models/comment');
 // GET route for reading data
+
 router.get('/', function(req, res, next) {
   Promise.all([
     User.findById(req.session.userId),
