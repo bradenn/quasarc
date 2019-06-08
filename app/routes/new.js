@@ -38,7 +38,8 @@ router.post('/', function(req, res, next) {
               title: req.body.title,
               section: req.body.section,
               post: req.body.body,
-              user: user.username
+              user: user.username,
+              date: new Date()
             }
 
             Posts.create(postData, function(error, post) {

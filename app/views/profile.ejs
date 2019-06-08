@@ -6,19 +6,19 @@
   <%- include("partials/nav"); %>
   <br>
   <div class="container">
-    <ul class="nav nav-tabs">
-      <li class="nav-item">
-        <a class="nav-link active" data-toggle="tab" href="#post">Posts</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" data-toggle="tab" href="#comments">Comments</a>
-      </li>
-    </ul>
-    <br>
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a class="" data-toggle="tab" href="#post">Posts</a></li>
+      <li class="breadcrumb-item active"><a class="" data-toggle="tab" href="#comments">Comments</a></li>
+
+      <li class="breadcrumb-item"><a class="" href="#liked">Liked</a></li>
+      <li class="breadcrumb-item"><a class="" href="#disliked">Disliked</a></li>
+
+    </ol>
     <div class="row" style="margin-bottom: 16px;">
       <div class="col-md-8">
         <div class="tab-content">
           <div class="tab-pane fade active show" id="post">
+            <% if(post.length > 0){ %>
             <% for (var i = 0; i < post.length; i++) { %>
             <div class="row">
               <div class="col-md-12">
@@ -37,6 +37,49 @@
             </div>
             <br>
             <% } %>
+            <% }else{ %>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="card bg-light">
+                  <div class="card-body">
+                    <p class="card-text " style="text-align:center;">The user u/<%= user.username %> has no posts</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <% } %>
+          </div>
+          <div class="tab-pane fade" id="comments">
+            <% if(post.length > 0){ %>
+            <% for (var i = 0; i < post.length; i++) { %>
+            <div class="row">
+              <div class="col-md-12">
+                <a href="/p/<%= post[i]._id %>" class="no-hover">
+                  <div class="card bg-light">
+                    <p class="card-title-span"><%= post[i].title %></p>
+                    <div style="margin-left: 16px;">
+                      <span class="card-sub-span">by <a href="/u/<%= post[i].user %>" class="card-sub-span"><%= post[i].user %></a></span>
+                    </div>
+                    <div class="card-body card-text-body-fade">
+                      <p class="card-text card-text-fade"><%= post[i].post %></p>
+                    </div>
+                  </div>
+                </a>
+              </div>
+            </div>
+            <br>
+            <% } %>
+            <% }else{ %>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="card bg-light">
+                  <div class="card-body">
+                    <p class="card-text " style="text-align:center;">The user u/<%= user.username %> has no comments</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <% } %>
           </div>
         </div>
       </div>
@@ -46,7 +89,7 @@
             <div class="card bg-light">
               <p class="card-title-span">u/<%= user.username %></p>
               <div style="margin-left: 16px;">
-                <% if(user.bio == null){ %> No bio :( <% }else{ %><%= user.bio %><% } %><br>
+                <%= user.bio %>
                 <a href="#" class="" id="bioEdit" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Edit Bio</a>
 
                 <div class="dropdown-menu" aria-labelledby="bioEdit">
@@ -61,34 +104,12 @@
                 </div>
               </div>
               <br>
+
               <div class="card-footer">
-                <span>Badges:</span>
-                <span style="font-size: 100%;"><%= user.badge.join("") %></span>
-                <a href="#" class="float-right" id="btnGroupDrop1" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Manage Badges</a>
-
-                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="btnGroupDrop1">
-                  <form class="px-4 py-3" action="/profile/badge" method="post">
-                    <div class="form-check">
-                      <label class="form-check-label">
-                        <input class="form-check-input" name="usa" type="checkbox" value="true">
-                        🇺🇸 American
-                      </label>
-                    </div>
-                    <div class="form-check">
-                      <label class="form-check-label">
-                        <input class="form-check-input" name="pride" type="checkbox" value="true">
-                        🏳️‍🌈 Pride
-                      </label>
-                    </div>
-                    <br>
-                    <button type="submit" class="btn btn-primary btn-sm" style="width:100%;">Save</button>
-                  </form>
-                </div>
-
-
+                <span style="font-size: 100%;"><%= user.badge.join(" ") %></span>
 
               </div>
-            </div>
+            </div><br>
           </div>
         </div>
         <br>
