@@ -6,14 +6,11 @@
   <%- include("partials/nav"); %>
   <br>
   <div class="container">
-    <ol class="breadcrumb">
-      <li class="breadcrumb-item"><a class="" data-toggle="tab" href="#post">Posts</a></li>
-      <li class="breadcrumb-item active"><a class="" data-toggle="tab" href="#comments">Comments</a></li>
-
-      <li class="breadcrumb-item"><a class="" href="#liked">Liked</a></li>
-      <li class="breadcrumb-item"><a class="" href="#disliked">Disliked</a></li>
-
-    </ol>
+    <ul class="breadcrumb nav nav-tabs">
+      <li class="breadcrumb-item active"><a class="" aria-controls="post" role="tab" data-toggle="tab" href="#post">Posts</a></li>
+      <li class="breadcrumb-item"><a class="" aria-controls="comments" role="tab" data-toggle="tab" href="#comments">Comments</a></li>
+      <li class="breadcrumb-item"><a class="" aria-controls="friends" role="tab" data-toggle="tab" href="#friends">Friends</a></li>
+    </ul>
     <div class="row" style="margin-bottom: 16px;">
       <div class="col-md-8">
         <div class="tab-content">
@@ -75,6 +72,52 @@
                 <div class="card bg-light">
                   <div class="card-body">
                     <p class="card-text " style="text-align:center;">The user u/<%= user.username %> has no comments</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <% } %>
+          </div>
+          <div class="tab-pane fade" id="friends">
+            <% if(typeof user.friends != "undefined"){ %>
+            <% for (var i = 0; i < user.friends.length; i++) { %>
+            <div class="row">
+              <div class="col-md-12">
+
+                <div class="card bg-light">
+                  <div class="card-body">
+                    <div class="row">
+                      <div class="col-md-8">
+                        <p class="card-text " style=""><%= user.friends[i] %>
+                        </p>
+                      </div>
+                      <div class="col-md-4">
+                        <span class="float-right">
+                          <a href="#chat" class="" style="color:#fff; margin-right: 0.75em;"><i class="fas fa-comment"></i></a>
+                          <div class="dropdown d-inline-block">
+                            <a href="#options" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color:#fff;"><i class="fas fa-ellipsis-v"></i></a>
+                            <div class="dropdown-menu">
+                              <a class="dropdown-item" href="#">Block</a>
+                              <a class="dropdown-item" href="#">Remove Friend</a>
+                              <a class="dropdown-item" href="#">Report</a>
+                            </div>
+                          </div>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+            <br>
+            <% } %>
+            <% }else{ %>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="card bg-light">
+                  <div class="card-body">
+                    <p class="card-text " style="text-align:center;">The user u/<%= user.username %> has no friends</p>
                   </div>
                 </div>
               </div>

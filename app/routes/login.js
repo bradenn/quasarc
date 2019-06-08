@@ -55,8 +55,8 @@ router.post('/', function(req, res, next) {
       }
     });
 
-  } else if (req.body.logemail && req.body.logpassword) {
-    User.authenticate(req.body.logemail, req.body.logpassword, function(error, user) {
+  } else if (req.body.loguser && req.body.logpassword) {
+    User.authenticate(req.body.loguser, req.body.logpassword, function(error, user) {
       if (error || !user) {
         User.findById(req.session.userId)
           .exec(function(error, user) {
