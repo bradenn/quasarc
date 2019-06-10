@@ -3,7 +3,23 @@ body {
   font-family: 'IBM Plex Sans', sans-serif;
 }
 
-.navbar-toggler{
+.border-right {
+  border-right: 1px solid rgba(97, 97, 97, 0.5);
+}
+
+.text-brand {
+  color: rgb(10, 132, 255);
+}
+
+.nsfw-text {
+   filter: blur(6px);
+}
+
+.post-items {
+  color: rgb(215, 218, 220) !important;
+}
+
+.navbar-toggler {
   color: rgba(226, 226, 226, 0.5);
 }
 
@@ -13,26 +29,37 @@ body {
   color: rgb(215, 218, 220);
 }
 
+.list-inline-item+.list-inline-item::before {
+  content: "|";
+  display: inline-block;
+  padding-right: 0.5rem;
+  color: #555;
+  content: "/";
+}
+
 .breadcrumb-item+.breadcrumb-item::before {
-    content: "|";
+  content: "|";
 }
 
 .ql-snow {
   background-color: #fff;
 }
-.bg-light{
+
+.bg-light {
   background-color: rgba(31, 31, 31, 1) !important;
 }
-.card-footer{
+
+.card-footer {
   border-top: 1px solid rgba(97, 97, 97, 0.5);
 }
+
 .card-text-body-fade {
   max-height: 220px;
 }
 
 .comment-body {
   margin: 16px;
-  padding-left:8px;
+  padding-left: 8px;
   border-left: 3px solid rgba(226, 226, 226, 0.5);
 }
 
@@ -61,7 +88,7 @@ body {
   font-size: 14px;
 }
 
-.card-footer{
+.card-footer {
   padding: 0rem 0.75rem;
   font-size: 200%;
 }
@@ -128,6 +155,7 @@ body {
   padding-left: 0px;
   border: 1px solid rgba(97, 97, 97, 1);
 }
+
 .nav-search:focus {
   color: rgb(215, 218, 220);
   background-color: inherit;

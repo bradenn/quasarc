@@ -26,6 +26,7 @@ var TextSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  nsfw: Boolean,
   date: {
     type: String,
     required: true,

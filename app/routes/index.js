@@ -9,6 +9,7 @@ router.use('/profile', require('./profile.js'));
 router.use('/p', require('./post.js'));
 router.use('/u', require('./user.js'));
 router.use('/like', require('./like.js'));
+router.use('/chat', require('./chat.js'));
 
 // GET for logout logout
 router.get('/logout', function (req, res, next) {

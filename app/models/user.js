@@ -22,6 +22,7 @@ var UserSchema = new mongoose.Schema({
   },
   code: String,
   friends: [String],
+  nsfw: Boolean,
   verified: Boolean
 });
 
