@@ -19,9 +19,9 @@ var TextSchema = new mongoose.Schema({
     trim: true
   },
   comments: [{
-    body: String,
-    user: String
-  }],
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Comment'
+    }],
   user: {
     type: String,
     required: true,
@@ -33,5 +33,12 @@ var TextSchema = new mongoose.Schema({
   }
 });
 
+var CommentSchema = new mongoose.Schema({
+  author: String,
+  body: String,
+  date: String
+});
+
 var Text = mongoose.model('Text', TextSchema);
-module.exports = Text;
+var Comment = mongoose.model('Comment', CommentSchema);
+module.exports = { Text: Text, Comment: Comment };

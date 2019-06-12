@@ -48,7 +48,7 @@
         <div class="card bg-light">
           <% for (var i = 0; i < post.comments.length; i++) { %>
           <div class="comment-body">
-            <span class="comment-header"><%= post.comments[i].user %></span><br>
+            <span class="comment-header"><a href="/u/<%= post.comments[i].author %>"><%= post.comments[i].author %></a></span><br>
             <span><%= post.comments[i].body %></span>
           </div>
           <% } %>

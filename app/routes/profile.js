@@ -1,6 +1,6 @@
 var router = require('express').Router();
 var User = require('../models/user');
-var Text = require('../models/textpost');
+var Post = require('../models/textpost');
 
 router.get('/', function(req, res, next) {
 
@@ -13,10 +13,10 @@ router.get('/', function(req, res, next) {
           return res.redirect('/login');
         } else {
           Promise.all([
-            Text.find({
+            Post.Text.find({
               user: user.username
             }),
-            Text.find({
+            Post.Text.find({
               comments: {
                 $elemMatch: {
                   user: user.username

@@ -2,6 +2,7 @@ var router = require('express').Router();
 var User = require('../models/user');
 var Like = require('../models/like');
 
+
 // GET route for reading data
 
 router.get('/:post&:score&:user', function(req, res, next) {
