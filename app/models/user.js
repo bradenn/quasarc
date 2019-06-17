@@ -10,16 +10,12 @@ var UserSchema = new mongoose.Schema({
   },
   badge: [String],
   bio: String,
-  username: {
-    type: String,
-    unique: true,
-    required: true,
-    trim: true
-  },
-  password: {
-    type: String,
-    required: true,
-  },
+  username: String,
+  password: String,
+  picture: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Picture'
+    },
   code: String,
   friends: [String],
   nsfw: Boolean,
@@ -27,9 +23,11 @@ var UserSchema = new mongoose.Schema({
 });
 
 //authenticate input against database
-UserSchema.statics.authenticate = function (username, password, callback) {
-  User.findOne({ username: username })
-    .exec(function (err, user) {
+UserSchema.statics.authenticate = function(username, password, callback) {
+  User.findOne({
+      username: username
+    })
+    .exec(function(err, user) {
       if (err) {
         return callback(err)
       } else if (!user) {
@@ -37,7 +35,7 @@ UserSchema.statics.authenticate = function (username, password, callback) {
         err.status = 401;
         return callback(err);
       }
-      bcrypt.compare(password, user.password, function (err, result) {
+      bcrypt.compare(password, user.password, function(err, result) {
         if (result === true) {
           return callback(null, user);
         } else {
@@ -48,9 +46,9 @@ UserSchema.statics.authenticate = function (username, password, callback) {
 }
 
 //hashing a password before saving it to the database
-UserSchema.pre('save', function (next) {
+UserSchema.pre('save', function(next) {
   var user = this;
-  bcrypt.hash(user.password, 10, function (err, hash) {
+  bcrypt.hash(user.password, 10, function(err, hash) {
     if (err) {
       return next(err);
     }

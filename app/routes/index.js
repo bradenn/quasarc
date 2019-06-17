@@ -7,9 +7,12 @@ router.use('/login', require('./login.js'));
 router.use('/new', require('./new.js'));
 router.use('/profile', require('./profile.js'));
 router.use('/p', require('./post.js'));
+router.use('/r', require('./realm.js'));
+router.use('/realm', require('./realm.js'));
 router.use('/u', require('./user.js'));
 router.use('/like', require('./like.js'));
 router.use('/chat', require('./chat.js'));
+router.use('/picture', require('./picture.js'));
 
 // GET for logout logout
 router.get('/logout', function (req, res, next) {

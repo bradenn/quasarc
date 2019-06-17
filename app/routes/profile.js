@@ -1,10 +1,11 @@
 var router = require('express').Router();
 var User = require('../models/user');
 var Post = require('../models/textpost');
+var Picture = require('../models/picture');
 
 router.get('/', function(req, res, next) {
 
-  User.findById(req.session.userId)
+  User.findById(req.session.userId).populate("picture")
     .exec(function(error, user) {
       if (error) {
         return next(error);
