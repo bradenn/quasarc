@@ -8,11 +8,13 @@
     <ul class="navbar-nav mr-auto">
       <div class="dropdown ">
         <button class="btn btn-secondary nav-drop dropdown-toggle username" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Home&nbsp;&nbsp;<span class="float-right"><i class="fas fa-caret-down"></i></span>
+          All&nbsp;&nbsp;<span class="float-right"><i class="fas fa-caret-down"></i></span>
         </button>
-        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
-          <a class="dropdown-item" href="/profile">profile</a>
-          <a class="dropdown-item" href="/settings">settings</a>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+
+          <% for (var i = 0; i < user.realms.length; i++) { %>
+            <a class="dropdown-item" href="/r/<%= user.realms[i].name %>"><%= user.realms[i].name %></a>
+          <% } %>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="/logout">logout</a>
         </div>

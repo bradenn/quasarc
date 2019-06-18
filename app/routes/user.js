@@ -16,7 +16,7 @@ router.get('/', function(req, res, next) {
             if(target == null){
               res.redirect("/404");
             }else{
-              User.findById(req.session.userId)
+              User.findById(req.session.userId).populate("realms")
                 .exec(function(error, user) {
                   if (error) {
                     return next(error);

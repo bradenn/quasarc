@@ -48,11 +48,9 @@
                   <div class="form-group">
                     <label>Post section</label>
                     <select class="form-control" id="section" name="section">
-                      <option>1</option>
-                      <option>2</option>
-                      <option>3</option>
-                      <option>4</option>
-                      <option>5</option>
+                      <% for (var i = 0; i < realm.length; i++) { %>
+                        <option><%= realm[i].name %></option>
+                      <% } %>
                     </select>
                   </div>
                 </div>

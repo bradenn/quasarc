@@ -4,6 +4,7 @@ var bcrypt = require('bcrypt');
 var RealmSchema = new mongoose.Schema({
   name: String,
   bio: String,
+  nsfw: Boolean,
   owner: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User'

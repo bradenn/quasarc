@@ -5,7 +5,7 @@ var faker = require('faker');
 // GET route for reading data
 router.get('/:id', function(req, res, next) {
 
-  User.findById(req.session.userId)
+  User.findById(req.session.userId).populate("realms")
     .exec(function(error, user) {
       if (error) {
         return next(error);

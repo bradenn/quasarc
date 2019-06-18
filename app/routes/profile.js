@@ -5,7 +5,7 @@ var Picture = require('../models/picture');
 
 router.get('/', function(req, res, next) {
 
-  User.findById(req.session.userId).populate("picture")
+  User.findById(req.session.userId).populate("picture").populate("realms")
     .exec(function(error, user) {
       if (error) {
         return next(error);

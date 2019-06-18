@@ -5,26 +5,33 @@
     <a href="/p/<%= post[i]._id %>" class="no-hover">
       <div class="card bg-light">
         <p class="card-title-span"><%= post[i].title %><span class="float-right" style="margin-right:16px;">
-          <% if(post[i].nsfw != null && post[i].nsfw){ %>
-          <span class="badge badge-danger">NSFW</span>
-          <% } %>
-        </span></p>
+            <% if(post[i].nsfw != null && post[i].nsfw){ %>
+            <span class="badge badge-danger nsfw-badge-show">NSFW</span>
+            <% } %>
+          </span></p>
         <div style="margin-left: 16px;">
-          <span class="card-sub-span">by <a href="/u/<%= post[i].user %>" class="card-sub-span"><%= post[i].user %></a></span>
+          <span class="card-sub-span">
+            <a href="/r/<%= post[i].realm.name %>" class="card-sub-span">
+              <strong>r/<%= post[i].realm.name %></strong>
+            </a>
+            <a href="/u/<%= post[i].user %>" class="card-sub-span">
+              <strong>u/<%= post[i].user %></strong>
+            </a>
+          </span>
         </div>
         <div class="card-body card-text-body-fade">
           <p class="card-text card-text-fade <% if(post[i].nsfw){ %>nsfw-text<%}%>"><%= post[i].post %></p>
         </div>
-        <span style="margin-left: 16px;">
-          <ul class="list-inline">
-            <li class="list-inline-item"><a class="post-items" href="/p/<%= post[i]._id %>">
-              <% if(post[i].comments.length === 0){ %> No Comments<% }%>
-              <% if(post[i].comments.length === 1){ %><%= post[i].comments.length %> Comment<% }%>
-              <% if(post[i].comments.length >= 2){ %><%= post[i].comments.length %> Comments<% }%></li>
-            <li class="list-inline-item"><a class="post-items" href="#share">Share</li>
-          </ul>
-        </span>
-      </div>
+        <span style=" margin-left: 16px;">
+            <ul class="list-inline">
+              <li class="list-inline-item"><a class="post-items" href="/p/<%= post[i]._id %>">
+                  <% if(post[i].comments.length === 0){ %> No Comments<% }%>
+                  <% if(post[i].comments.length === 1){ %><%= post[i].comments.length %> Comment<% }%>
+                  <% if(post[i].comments.length >= 2){ %><%= post[i].comments.length %> Comments<% }%></li>
+              <li class="list-inline-item"><a class="post-items" href="#share">Share</li>
+            </ul>
+            </span>
+        </div>
     </a>
   </div>
 </div>

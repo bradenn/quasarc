@@ -12,12 +12,6 @@ var TextSchema = new mongoose.Schema({
     required: true,
     trim: true
   },
-  section: {
-    type: String,
-    unique: false,
-    required: true,
-    trim: true
-  },
   comments: [{
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Comment'
@@ -26,13 +20,17 @@ var TextSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  realm: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Realm'
+    },
   nsfw: Boolean,
   date: {
     type: String,
     required: true,
   }
 });
-
+TextSchema.index({ text: "text" }, { background: true });
 var CommentSchema = new mongoose.Schema({
   author: String,
   body: String,

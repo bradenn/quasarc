@@ -10,12 +10,16 @@ var UserSchema = new mongoose.Schema({
   },
   badge: [String],
   bio: String,
+  realms: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Realm'
+  }],
   username: String,
   password: String,
   picture: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'Picture'
-    },
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Picture'
+  },
   code: String,
   friends: [String],
   nsfw: Boolean,
