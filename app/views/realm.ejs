@@ -80,9 +80,27 @@
                 <%= realm.bio %>
               </div>
               <br>
-              <div class="card-footer">
+              <%
+              if(user != null){
+              var found = false;
+              for(var i = 0; i < user.realms.length; i++) {
+                  if (user.realms[i].name == realm.name) {
+                      found = true;
+                      break;
+                  }
+              }
+              if(found){
+                %>
+              <a href="/r/e/<%= realm._id %>/unfollow" class="btn btn-secondary">Unfollow</a>
+              <%
+              }else{
+                %>
+              <a href="/r/e/<%= realm._id %>/follow" class="btn btn-primary">Follow</a>
+              <%
+              }
+            }
+              %>
 
-              </div>
             </div>
           </div>
         </div>

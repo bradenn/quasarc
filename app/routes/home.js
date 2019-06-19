@@ -10,9 +10,7 @@ router.get('/', function(req, res, next) {
       if (error) {
         return next(error);
       } else {
-        if(user == null){
-          //res.redirect("/404");
-        }else{
+
           Post.Text.find({}).populate("realm").populate("comments")
             .exec(function(error, post) {
               if (error) {
@@ -24,7 +22,7 @@ router.get('/', function(req, res, next) {
                 });
               }
             });
-        }
+        
       }
     });
 });

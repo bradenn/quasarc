@@ -11,18 +11,23 @@
           All&nbsp;&nbsp;<span class="float-right"><i class="fas fa-caret-down"></i></span>
         </button>
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <a class="dropdown-item" href="/r/all">All</a>
+          <a class="dropdown-item" href="/r/general">General</a>
+          <a class="dropdown-item" href="/r/popular">Popular</a>
 
-          <% for (var i = 0; i < user.realms.length; i++) { %>
-            <a class="dropdown-item" href="/r/<%= user.realms[i].name %>"><%= user.realms[i].name %></a>
-          <% } %>
+          <% if(user != null && user.realms != null){ %>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="/logout">logout</a>
+          <% for (var i = 0; i < user.realms.length; i++) { %>
+          <a class="dropdown-item" href="/r/<%= user.realms[i].name %>"><%= user.realms[i].name %></a>
+          <% } } %>
+
+
         </div>
       </div>
       <form class="form-inline my-2 my-lg-0" action="search" autocomplete="off">
-           <input class="form-control mr-sm-2" type="search" placeholder="Search" autocomplete="off" id="q" name="q" style="height:85%" aria-label="Search">
+        <input class="form-control mr-sm-2" type="search" placeholder="Search" autocomplete="off" id="q" name="q" style="height:85%" aria-label="Search">
 
-         </form>
+      </form>
     </ul>
     <ul class="navbar-nav mr-right" id="nav">
       <a href="/messages" class="btn btn-secondary nav-drop username"><i class="fas fa-envelope"></i></a>
@@ -41,10 +46,10 @@
       </div>
 
       <% } else{ %>
-          <li class="nav-item">
-            <a class="nav-link" href="/login">Login / Signup</a>
-          </li>
-          <% } %>
+      <li class="nav-item">
+        <a class="nav-link" href="/login">Login / Signup</a>
+      </li>
+      <% } %>
 
     </ul>
   </div>
