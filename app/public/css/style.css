@@ -68,9 +68,6 @@ body {
   border-top: 1px solid rgba(97, 97, 97, 0.5);
 }
 
-.card-text-body-fade {
-  max-height: 220px;
-}
 
 .comment-body {
   margin: 16px;
@@ -91,16 +88,8 @@ body {
   text-decoration: none;
 }
 
-.card-text-fade {
-  color: rgb(215, 218, 220);
-  max-height: 190px;
-  overflow: hidden;
-  background-image: linear-gradient(180deg, rgb(215, 218, 220) 50%, rgba(18, 18, 18, 0.75) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  position: relative;
-  display: inline-block;
-  font-size: 14px;
+.bold{
+  font-weight: 600;
 }
 
 .card-footer {
@@ -169,6 +158,11 @@ body {
   border-radius: 2px;
   padding-left: 0px;
   border: 1px solid rgba(97, 97, 97, 1);
+}
+
+.no-bs{
+  color: inherit;
+
 }
 
 .nav-search:focus {
