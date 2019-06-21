@@ -3,6 +3,15 @@ body {
   font-family: 'IBM Plex Sans', sans-serif;
 }
 
+.card {
+  margin-bottom:8px;
+}
+
+.realm-button{
+margin:16px;
+margin-top:0;
+}
+
 .realm-header {
   background-color: rgb(10, 132, 255);
   padding-top: 16px;
@@ -72,12 +81,11 @@ body {
 .comment-body {
   margin: 16px;
   padding-left: 8px;
-  border-left: 3px solid rgba(226, 226, 226, 0.5);
 }
 
 .comment-header {
-  color: rgb(215, 218, 220);
-  font-size: 12px;
+  font-size: 14px;
+  color: rgba(215, 218, 220, 0.75);
 }
 
 .no-hover {

@@ -12,7 +12,7 @@ router.get('/', function(req, res, next) {
 router.get('/:realm', function(req, res, next) {
   Realm.findOne({
       name: req.params.realm
-    })
+    }).populate("moderator").populate("owner")
     .exec(function(error, realm) {
       if (error) {
         return next(error);

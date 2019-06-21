@@ -30,7 +30,7 @@
             <% if(realm.nsfw){ %>
             <%- include("partials/nsfwpost"); %>
             <% }else{ %>
-            <%- include("partials/post"); %>
+            <%- include("partials/smallpost"); %>
             <% } %>
           </div>
           <div class="tab-pane fade" id="comments">
@@ -78,29 +78,66 @@
                 </span></p>
               <div style="margin-left: 16px;">
                 <%= realm.bio %>
+                </div>
+<br>
+
+              <div class="btn-group realm-button" role="group" aria-label="Basic example">
+
+                <a href="/new/post" class="btn btn-primary">Post</a>
+                <%
+                  if(user != null){
+                  var found = false;
+                  for(var i = 0; i < user.realms.length; i++) {
+                      if (user.realms[i].name == realm.name) {
+                          found = true;
+                          break;
+                      }
+                  }
+                  if(found){
+                    %>
+                <a href="/r/e/<%= realm._id %>/unfollow" class="btn btn-secondary ">Unfollow</a>
+                <%
+                  }else{
+                    %>
+                <a href="/r/e/<%= realm._id %>/follow" class="btn btn-primary ">Follow</a>
+                <%
+                  }
+                }
+                  %>
+              </div>
+
+
+            </div>
+          </div>
+        </div><br>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card bg-light">
+              <p class="card-title-span">Moderators</p>
+              <div style="margin-left: 16px;">
+                <%
+                  if(realm.owner.username === user.username){
+                    %><span class="text-muted">You own this realm.</span><br><span class="text-primary">- <%= realm.owner.username %></span><%
+                  }else{
+                    %><span>- <%= realm.owner.username %></span><%
+                  }
+                %>
+
+                <%
+                for(var i = 0; i < realm.moderator.length; i++) {
+                  if(realm.moderator[i].username === user.username){
+                    %>
+                    <span class="text-muted">You moderate this realm.</span><br>
+                      <span class="text-primary"><%= realm.moderator[i].username %></span>
+                    <%
+                  }
+                  %>
+                <span><%= realm.moderator[i].username %></span>
+                <%
+                }
+                %>
               </div>
               <br>
-              <%
-              if(user != null){
-              var found = false;
-              for(var i = 0; i < user.realms.length; i++) {
-                  if (user.realms[i].name == realm.name) {
-                      found = true;
-                      break;
-                  }
-              }
-              if(found){
-                %>
-              <a href="/r/e/<%= realm._id %>/unfollow" class="btn btn-secondary">Unfollow</a>
-              <%
-              }else{
-                %>
-              <a href="/r/e/<%= realm._id %>/follow" class="btn btn-primary">Follow</a>
-              <%
-              }
-            }
-              %>
-
             </div>
           </div>
         </div>

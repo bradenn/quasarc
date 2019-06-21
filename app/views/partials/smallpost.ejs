@@ -8,7 +8,8 @@
             <% if(post[i].nsfw != null && post[i].nsfw){ %>
             <span class="badge badge-danger nsfw-badge-show">NSFW</span>
             <% } %>
-          </span></p>
+            <script src="/js/moment.min.js"></script>
+          </span><span class="text-muted float-right" style="margin-right:0.75em;"><small><%= timeSince(new Date(post[i].date)); %></small></span></p>
         <div style="margin-left: 16px;">
           <span class="card-sub-span">
             <a href="/r/<%= post[i].realm.name %>" class="no-bs bold">
@@ -34,7 +35,6 @@
     </a>
   </div>
 </div>
-<br>
 <% } %>
 <% }else{ %>
 <div class="row">
@@ -47,3 +47,35 @@
   </div>
 </div>
 <% } %>
+
+<%
+
+function timeSince(date) {
+
+  var seconds = Math.floor((new Date() - date) / 1000);
+
+  var interval = Math.floor(seconds / 31536000);
+
+  if (interval > 1) {
+    return interval + " years";
+  }
+  interval = Math.floor(seconds / 2592000);
+  if (interval > 1) {
+    return interval + " months";
+  }
+  interval = Math.floor(seconds / 86400);
+  if (interval > 1) {
+    return interval + " days";
+  }
+  interval = Math.floor(seconds / 3600);
+  if (interval > 1) {
+    return interval + " hours";
+  }
+  interval = Math.floor(seconds / 60);
+  if (interval > 1) {
+    return interval + " minutes";
+  }
+  return Math.floor(seconds) + " seconds";
+}
+
+%>
