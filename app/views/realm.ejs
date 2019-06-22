@@ -116,7 +116,7 @@
 
               <p class="card-title-span">Moderators</p>
               <%
-                if(realm.owner.username === user.username){
+                if(realm.owner._id === user._id){
                   %>
               <a href="#" id="addMod" class="dropdown-toggle mar-75" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Add Moderator</a>
               <div class="dropdown-menu" aria-labelledby="addMod">
@@ -134,7 +134,7 @@
               %>
               <div style="margin-left: 16px;">
                 <%
-                  if(realm.owner.username === user.username){
+                  if(realm.owner._id === user._id){
                     %><span class="text-muted">You own this realm.</span><br><span class="text-primary">- <%= realm.owner.username %></span><%
                   }else{
                     %><span>- <%= realm.owner.username %></span><%
