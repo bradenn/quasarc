@@ -13,6 +13,7 @@ router.use('/u', require('./user.js'));
 router.use('/like', require('./like.js'));
 router.use('/chat', require('./chat.js'));
 router.use('/picture', require('./picture.js'));
+router.use('/404', require('./404.js'));
 
 // GET for logout logout
 router.get('/logout', function (req, res, next) {

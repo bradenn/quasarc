@@ -3,29 +3,30 @@ body {
   font-family: 'IBM Plex Sans', sans-serif;
 }
 
-.card {
-  margin-bottom:8px;
+.mar-75{
+  margin-left: 16px;
 }
 
-.realm-button{
-margin:16px;
-margin-top:0;
+.card {
+  margin-bottom: 8px;
+}
+
+.realm-button {
+  margin: 16px;
+  margin-top: 0;
 }
 
 .realm-header {
   background-color: rgb(10, 132, 255);
   padding-top: 16px;
   padding-bottom: 16px;
-
 }
 
-.realm-header-title{
+.realm-header-title {
   margin-left: 0;
 }
 
-.realm-nav {
-
-}
+.realm-nav {}
 
 .border-right {
   border-right: 1px solid rgba(97, 97, 97, 0.5);
@@ -58,7 +59,10 @@ margin-top:0;
   display: inline-block;
   padding-right: 0.5rem;
   color: #555;
-  content: "/";
+}
+
+hr {
+  border-color: rgba(97, 97, 97, 0.5);
 }
 
 .breadcrumb-item+.breadcrumb-item::before {
@@ -77,9 +81,9 @@ margin-top:0;
   border-top: 1px solid rgba(97, 97, 97, 0.5);
 }
 
-
 .comment-body {
   margin: 16px;
+  margin-top: 0;
   padding-left: 8px;
 }
 
@@ -96,7 +100,7 @@ margin-top:0;
   text-decoration: none;
 }
 
-.bold{
+.bold {
   font-weight: 600;
 }
 
@@ -168,9 +172,8 @@ margin-top:0;
   border: 1px solid rgba(97, 97, 97, 1);
 }
 
-.no-bs{
+.no-bs {
   color: inherit;
-
 }
 
 .nav-search:focus {

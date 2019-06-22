@@ -55,7 +55,7 @@
               <div class="form-group">
                 <input class="btn btn-primary" type="submit" value="Post">
               </div>
-
+              <span class="text-danger"><% if(typeof error != "undefined") {  %> <%= error.message %> <% } %></span>
 
             </form>
 

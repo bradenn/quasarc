@@ -11,31 +11,38 @@
     <div class="row" style="margin-bottom: 16px;">
 
       <div class="col-md-9">
-        <a href="/p/<%= post._id %>" class="no-hover">
-          <div class="card bg-light">
-            <p class="card-title-span"><%= post.title %></p>
-            <div style="margin-left: 16px;">
-              <span class="card-sub-span">by <a href="/u/<%= post.user %>" class="card-sub-span"><%= post.user %></a></span>
-            </div>
-            <div class="card-body">
-              <p class="card-text"><%= post.post %></p>
 
-            </div>
-          </div>
-        </a>
-
-      </div>
-
-      <div class="col-md-3"></div>
-    </div>
-    <div class="row" style="margin-bottom: 16px;">
-      <div class="col-md-9" style="">
         <div class="card bg-light">
+          <p class="card-title-span"><%= post.title %></p>
+          <div style="margin-left: 16px;">
+            <span class="card-sub-span">by <a href="/u/<%= post.user %>" class="card-sub-span"><%= post.user %></a></span>
+          </div>
+          <div class="card-body">
+            <p class="card-text"><%= post.post %></p>
+          </div>
+          <span style=" margin-left: 16px;">
+            <ul class="list-inline">
+              <li class="list-inline-item">
+                <% if(post.comments.length === 0){ %> No Comments<% }%>
+                <% if(post.comments.length === 1){ %><%= post.comments.length %> Comment<% }%>
+                <% if(post.comments.length >= 2){ %><%= post.comments.length %> Comments<% }%>
+              </li>
+              <li class="list-inline-item">
+                <a class="post-items" href="#share">Share</a>
+              </li>
+              <li class="list-inline-item">
+                <a class="post-items" href="#report">Report</a>
+              </li>
+            </ul>
+          </span>
+          <hr>
+          <% if(user != null){ %>
           <form id="post" action="/p/<%= post._id %>" class="comment-body" style="border:none; padding-left: 0;" method="post">
+            <small>Comment as <a href="/profile"><%= user.username %></a></small>
             <div class="form-group">
               <div class="row">
                 <div class="col-md-10" style="">
-                  <input class="form-control" type="text" id="body" name="body"></input>
+                  <textarea class="form-control" type="text" id="body" name="body"></textarea>
                 </div>
                 <div class="col-md-2" style="">
                   <input class="btn btn-primary" type="submit" value="Post">
@@ -44,13 +51,10 @@
             </div>
 
           </form>
-        </div>
-      </div>
-      <div class="col-md-3"></div>
-    </div>
-    <div class="row" style="margin-bottom: 16px;">
-      <div class="col-md-9" style="margin-bottom: 16px;">
-        <div class="card bg-light">
+          <% }else{ %>
+            <p style="margin-left:16px;"><a href="/login">Login to comment.</a></p>
+          <% } %>
+          <hr>
           <% for (var i = 0; i < post.comments.length; i++) { %>
           <div class="comment-body">
             <a href="/u/<%= post.comments[i].author %>" class="comment-header">u/<%= post.comments[i].author %></a>&nbsp;•&nbsp;<span><%= timeSince(new Date(post.date)); %> ago</span><br>
@@ -63,11 +67,13 @@
           </div>
           <% } %>
         </div>
-      </div>
 
+
+      </div>
 
       <div class="col-md-3"></div>
     </div>
+
 
   </div>
 

@@ -46,6 +46,51 @@ router.get('/:realm', function(req, res, next) {
     });
 
 });
+
+router.post('/manage/:realm/:action', function(req, res, next) {
+  if (req.params.action == "addmod") {
+    Realm.findOne({
+        name: req.params.realm
+      })
+      .exec(function(error, realm) {
+        if (realm != null) {
+          User.findById(req.session.userId).populate("realms")
+            .exec(function(error, user) {
+              if (realm.owner.toString() === user._id.toString()) {
+                User.findOne({
+                    username: req.body.username
+                  })
+                  .exec(function(error, target) {
+                    if (target != null) {
+                      Realm.findByIdAndUpdate(realm._id, {
+                        $push: {
+                          moderator: [target._id]
+                        }
+                      }, function(err, eh) {
+                        if(err || error){
+                          console.log(err + error);
+                        }else{
+                        
+
+                        }
+                      });
+                    }
+                  });
+              } else {
+                console.log("Must be owner of realm")
+              }
+            });
+        } else {
+          console.log("Realm not found")
+
+
+        }
+      });
+  }
+  res.redirect(req.get('referer'));
+});
+
+
 router.get('/e/:realm/:status', function(req, res, next) {
   Realm.findById(req.params.realm)
     .exec(function(error, realm) {

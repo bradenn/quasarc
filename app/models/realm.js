@@ -2,7 +2,11 @@ var mongoose = require('mongoose');
 var bcrypt = require('bcrypt');
 
 var RealmSchema = new mongoose.Schema({
-  name: String,
+  name: {
+    type: String,
+    unique: true,
+    required: true
+  },
   bio: String,
   nsfw: Boolean,
   owner: {

@@ -11,7 +11,7 @@ router.get('/', function(req, res, next) {
         return next(error);
       } else {
 
-          Post.Text.find({}).populate("realm").populate("comments")
+          Post.Text.find({}).populate("realm").populate("comments").sort({date: 1})
             .exec(function(error, post) {
               if (error) {
                 return next(error);
@@ -22,7 +22,7 @@ router.get('/', function(req, res, next) {
                 });
               }
             });
-        
+
       }
     });
 });

@@ -1,5 +1,5 @@
 var mongoose = require('mongoose');
-var bcrypt = require('bcrypt');
+var bcrypt = require('bcryptjs');
 
 var UserSchema = new mongoose.Schema({
   email: {
@@ -14,7 +14,15 @@ var UserSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Realm'
   }],
-  username: String,
+  owned_realms: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Realm'
+  }],
+  username: {
+    type: String,
+    unique: true,
+    required: true
+  },
   password: String,
   picture: {
     type: mongoose.Schema.Types.ObjectId,
@@ -52,13 +60,11 @@ UserSchema.statics.authenticate = function(username, password, callback) {
 //hashing a password before saving it to the database
 UserSchema.pre('save', function(next) {
   var user = this;
-  bcrypt.hash(user.password, 10, function(err, hash) {
-    if (err) {
-      return next(err);
-    }
-    user.password = hash;
+  bcrypt.genSalt(10, function(err, salt) {
+    user.password = bcrypt.hashSync(user.password, salt);
     next();
-  })
+  });
+
 });
 
 

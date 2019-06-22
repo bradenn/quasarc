@@ -48,9 +48,17 @@
                   <div class="form-group">
                     <label>Post section</label>
                     <select class="form-control" id="section" name="section">
-                      <% for (var i = 0; i < realm.length; i++) { %>
+                      <% if(target != null){
+                        %>
+                      <option><%= target %></option>
+                      <%
+                      } %>
+                      <optgroup label="_________">
+                        <% for (var i = 0; i < realm.length; i++) { %>
                         <option><%= realm[i].name %></option>
-                      <% } %>
+                        <% } %>
+                      </optgroup>
+
                     </select>
                   </div>
                 </div>

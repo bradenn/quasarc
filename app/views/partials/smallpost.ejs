@@ -9,7 +9,7 @@
             <span class="badge badge-danger nsfw-badge-show">NSFW</span>
             <% } %>
             <script src="/js/moment.min.js"></script>
-          </span><span class="text-muted float-right" style="margin-right:0.75em;"><small><%= timeSince(new Date(post[i].date)); %></small></span></p>
+          </span><span class="text-muted float-right" style="margin-right:0.75em;"><small><%= timeSince(new Date(post[i].date)); %> ago</small></span></p>
         <div style="margin-left: 16px;">
           <span class="card-sub-span">
             <a href="/r/<%= post[i].realm.name %>" class="no-bs bold">
@@ -24,11 +24,17 @@
 
         <span style=" margin-left: 16px;">
           <ul class="list-inline">
-            <li class="list-inline-item"><a class="post-items" href="/p/<%= post[i]._id %>">
+            <li class="list-inline-item">
                 <% if(post[i].comments.length === 0){ %> No Comments<% }%>
                 <% if(post[i].comments.length === 1){ %><%= post[i].comments.length %> Comment<% }%>
-                <% if(post[i].comments.length >= 2){ %><%= post[i].comments.length %> Comments<% }%></li>
-            <li class="list-inline-item"><a class="post-items" href="#share">Share</li>
+                <% if(post[i].comments.length >= 2){ %><%= post[i].comments.length %> Comments<% }%>
+            </li>
+            <li class="list-inline-item">
+              <a class="post-items" href="#share">Share</a>
+            </li>
+            <li class="list-inline-item">
+              <a class="post-items" href="#report">Report</a>
+            </li>
           </ul>
         </span>
       </div>
@@ -50,30 +56,31 @@
 
 <%
 
+
 function timeSince(date) {
 
   var seconds = Math.floor((new Date() - date) / 1000);
 
   var interval = Math.floor(seconds / 31536000);
 
-  if (interval > 1) {
-    return interval + " years";
+  if (interval >= 1) {
+    return interval + ((interval == 1)? " year": " years");
   }
   interval = Math.floor(seconds / 2592000);
-  if (interval > 1) {
-    return interval + " months";
+  if (interval >= 1) {
+    return interval + ((interval == 1)? " month": " months");
   }
   interval = Math.floor(seconds / 86400);
-  if (interval > 1) {
-    return interval + " days";
+  if (interval >= 1) {
+    return interval + ((interval == 1)? " day": " days");
   }
   interval = Math.floor(seconds / 3600);
-  if (interval > 1) {
-    return interval + " hours";
+  if (interval >= 1) {
+    return interval + ((interval == 1)? " hour": " hours");
   }
   interval = Math.floor(seconds / 60);
-  if (interval > 1) {
-    return interval + " minutes";
+  if (interval >= 1) {
+    return interval + ((interval == 1)? " minute": " minutes");
   }
   return Math.floor(seconds) + " seconds";
 }

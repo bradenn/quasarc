@@ -47,7 +47,13 @@ router.post('/', function(req, res, next) {
 
     User.create(userData, function(error, user) {
       if (error) {
-        return next(error);
+        return res.render("login", {
+          user: user,
+          error: {
+            type: "register",
+            message: "This username or email is taken."
+          }
+        });
       } else {
         req.session.userId = user._id;
 
