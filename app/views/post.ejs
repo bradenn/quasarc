@@ -13,15 +13,28 @@
       <div class="col-md-9">
 
         <div class="card bg-light">
-          <p class="card-title-span"><%= post.title %></p>
+          <p class="card-title-span"><%= post.title %><span class="float-right" style="margin-right:16px;">
+              <% if(post.nsfw != null && post[i].nsfw){ %>
+              <span class="badge badge-danger nsfw-badge-show">NSFW</span>
+              <% } %>
+            </span><span class="text-muted float-right" style="margin-right:0.75em;"><small><%= timeSince(new Date(post.date)); %> ago</small></span></p>
           <div style="margin-left: 16px;">
-            <span class="card-sub-span">by <a href="/u/<%= post.user %>" class="card-sub-span"><%= post.user %></a></span>
+            <span class="card-sub-span">
+              <a href="/r/<%= post.realm.name %>" class="no-bs bold">
+                r/<%= post.realm.name %>
+              </a>&bull; posted by
+              <a href="/u/<%= post.user %>" class="no-bs">
+               u/<%= post.user %>
+              </a>
+            </span>
           </div>
-          <div class="card-body">
+          <hr>
+          <div class="card-body" style="">
             <p class="card-text"><%= post.post %></p>
           </div>
-          <span style=" margin-left: 16px;">
-            <ul class="list-inline">
+          <hr>
+          <span style=" margin-left: 16px; ">
+            <ul class="list-inline" style="margin-bottom:0px;">
               <li class="list-inline-item">
                 <% if(post.comments.length === 0){ %> No Comments<% }%>
                 <% if(post.comments.length === 1){ %><%= post.comments.length %> Comment<% }%>

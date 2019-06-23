@@ -15,7 +15,7 @@
       <div class="col-md-8">
         <div class="tab-content">
           <div class="tab-pane fade active show" id="post">
-            <%- include("partials/post"); %>
+            <%- include("partials/smallpost"); %>
           </div>
           <div class="tab-pane fade" id="comments">
             <% if(post.length > 0){ %>
@@ -101,23 +101,9 @@
         <div class="row">
           <div class="col-md-12">
             <div class="card bg-light">
-              <div class="row">
-                <div class="col-md-3" style="margin:16px; margin-bottom:0px;">
-                  <% if(user.picture != null){ %>
-                  <img src="data:image/png;base64,<%= user.picture.picture %>" style="width:100%; border-radius:50%;"></img>
-                  <% }else{ %>
-
-                    <% } %>
-                </div>
-                <div class="col-md-9">
-
-                </div>
-              </div>
-
-
 
               <p class="card-title-span">u/<%= user.username %></p>
-              <div style="margin-left:16px;">
+              <div style="margin-left:16px; margin-bottom:16px;">
                 <%= user.bio %>
                 <a href="#" class="" id="bioEdit" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Edit Bio</a>
 
@@ -132,13 +118,6 @@
                   </form>
                 </div>
               </div>
-
-
-            <br>
-            <form action="/picture/upload" method="post" enctype="multipart/form-data">
-              <input type="file" name="file" id="file">
-              <button class="btn btn-primary" type="submit" name="submit"></button>
-            </form>
 
             <div class="card-footer">
               <span style="font-size: 100%;"><%= user.badge.join(" ") %></span>

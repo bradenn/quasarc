@@ -10,7 +10,7 @@ router.get('/:id', function(req, res, next) {
       if (error) {
         return next(error);
       } else {
-        Post.Text.findById(req.params.id).populate("comments")
+        Post.Text.findById(req.params.id).populate("comments").populate("realm")
           .exec(function(error, post) {
             if (error) {
               return next(error);

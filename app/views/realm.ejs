@@ -79,7 +79,7 @@
               <div style="margin-left: 16px;">
                 <%= realm.bio %>
               </div>
-              <br>
+
 
               <div class="btn-group realm-button" role="group" aria-label="Basic example">
 
@@ -109,7 +109,7 @@
 
             </div>
           </div>
-        </div><br>
+        </div>
         <div class="row">
           <div class="col-md-12">
             <div class="card bg-light">
@@ -132,7 +132,7 @@
               <%
               }
               %>
-              <div style="margin-left: 16px;">
+              <div style="margin-left: 16px; margin-bottom:16px;">
                 <%
                   if(realm.owner._id === user._id){
                     %><span class="text-muted">You own this realm.</span><br><span class="text-primary">- <%= realm.owner.username %></span><%
@@ -149,7 +149,7 @@
                 }
                 %>
               </div>
-              <br>
+
             </div>
           </div>
         </div>

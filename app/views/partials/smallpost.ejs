@@ -8,7 +8,6 @@
             <% if(post[i].nsfw != null && post[i].nsfw){ %>
             <span class="badge badge-danger nsfw-badge-show">NSFW</span>
             <% } %>
-            <script src="/js/moment.min.js"></script>
           </span><span class="text-muted float-right" style="margin-right:0.75em;"><small><%= timeSince(new Date(post[i].date)); %> ago</small></span></p>
         <div style="margin-left: 16px;">
           <span class="card-sub-span">
