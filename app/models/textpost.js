@@ -17,8 +17,9 @@ var TextSchema = new mongoose.Schema({
       ref: 'Comment'
     }],
   user: {
-    type: String,
-    required: true,
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User',
+    autopopulate: true
   },
   realm: {
       type: mongoose.Schema.Types.ObjectId,
@@ -36,6 +37,7 @@ var CommentSchema = new mongoose.Schema({
   body: String,
   date: String
 });
+TextSchema.plugin(require('mongoose-autopopulate'));
 
 var Text = mongoose.model('Text', TextSchema);
 var Comment = mongoose.model('Comment', CommentSchema);

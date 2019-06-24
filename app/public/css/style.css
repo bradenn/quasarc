@@ -3,7 +3,19 @@ body {
   font-family: 'IBM Plex Sans', sans-serif;
 }
 
-.mar-75{
+.chat-window{
+  min-height: 500px;
+}
+
+.dropdown-divider{
+  border-color: rgba(215, 218, 220, 0.10);
+}
+
+.dropdown-header {
+  color: rgba(215, 218, 220, 0.75);
+}
+
+.mar-75 {
   margin-left: 16px;
 }
 

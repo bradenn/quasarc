@@ -20,7 +20,7 @@ router.get('/:realm', function(req, res, next) {
         if (realm == null) {
           res.redirect("/404");
         } else {
-          User.findById(req.session.userId).populate("realms")
+          User.findById(req.session.userId)
             .exec(function(error, user) {
               if (error) {
                 return next(error);
@@ -54,7 +54,7 @@ router.post('/manage/:realm/:action', function(req, res, next) {
       })
       .exec(function(error, realm) {
         if (realm != null) {
-          User.findById(req.session.userId).populate("realms")
+          User.findById(req.session.userId)
             .exec(function(error, user) {
               if (realm.owner.toString() === user._id.toString()) {
                 User.findOne({
@@ -70,7 +70,7 @@ router.post('/manage/:realm/:action', function(req, res, next) {
                         if(err || error){
                           console.log(err + error);
                         }else{
-                        
+
 
                         }
                       });

@@ -13,24 +13,13 @@ router.get('/', function(req, res, next) {
         if (user === null) {
           return res.redirect('/login');
         } else {
-          Promise.all([
-            Post.Text.find({
-              user: user.username
-            }),
-            Post.Text.find({
-              comments: {
-                $elemMatch: {
-                  user: user.username
-                }
-              }
-            })
-          ]).then(([post, comments]) => {
-            return res.render("profile", {
-              user: user,
-              post: post,
-              comments: comments
+          Post.Text.find({user: req.session.userId}).populate("comments").populate("realm")
+            .exec(function(error, post) {
+              return res.render("profile", {
+                user: user,
+                post: post
+              });
             });
-          });
         }
       }
     });

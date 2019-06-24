@@ -110,14 +110,15 @@
             </div>
           </div>
         </div>
+        <%
+          if(realm.owner.username === user.username){
+            %>
         <div class="row">
           <div class="col-md-12">
             <div class="card bg-light">
 
-              <p class="card-title-span">Moderators</p>
-              <%
-                if(realm.owner._id === user._id){
-                  %>
+              <p class="card-title-span">Realm Options</p>
+
               <a href="#" id="addMod" class="dropdown-toggle mar-75" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Add Moderator</a>
               <div class="dropdown-menu" aria-labelledby="addMod">
                 <form class="px-4" action="/realm/manage/<%= realm.name %>/addmod" method="post">
@@ -129,25 +130,45 @@
                   <button type="submit" class="btn btn-primary btn-sm" style="width:100%;">Add</button>
                 </form>
               </div>
+
+
+            </div>
+          </div>
+        </div>
+        <%
+        }
+        %>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card bg-light">
+
+              <p class="card-title-span">Moderators</p>
+              <%
+                if(realm.owner.username === user.username){
+                  %>
               <%
               }
               %>
-              <div style="margin-left: 16px; margin-bottom:16px;">
-                <%
-                  if(realm.owner._id === user._id){
-                    %><span class="text-muted">You own this realm.</span><br><span class="text-primary">- <%= realm.owner.username %></span><%
-                  }else{
-                    %><span>- <%= realm.owner.username %></span><%
+              <div>
+                <ul class="list-group">
+                  <%
+                  for(var i = 0; i < realm.moderator.length; i++) {
+                      %>
+                  <a href="/u/<%= realm.moderator[i].username %>" class="no-bs">
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                      <%= realm.moderator[i].username %>
+                      <% if(realm.moderator[i].username === user.username){
+                        %><span class=""><i class="fas fa-star"></i></span><%
+                      } %>
+
+                    </li>
+                  </a>
+                  <%
                   }
-                %>
-                <br>
-                <%
-                for(var i = 0; i < realm.moderator.length; i++) {
-                    %>
-                <span><%= realm.moderator[i].username %></span>
-                <%
-                }
-                %>
+                  %>
+
+                </ul>
+
               </div>
 
             </div>

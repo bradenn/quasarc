@@ -5,12 +5,10 @@ var Text = require('../models/textpost');
 
 router.get('/', function(req, res, next) {
   Promise.all([
-    User.findById(req.session.userId),
-    Text.find({})
-  ]).then(([user, post]) => {
+    User.findById(req.session.userId)
+  ]).then(([user]) => {
     return res.render("chat", {
-      user: user,
-      post: post
+      user: user
     });
   });
 });

@@ -12,7 +12,13 @@ var UserSchema = new mongoose.Schema({
   bio: String,
   realms: [{
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'Realm'
+    ref: 'Realm',
+    autopopulate: true
+  }],
+  users:[{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User',
+    autopopulate: true
   }],
   owned_realms: [{
     type: mongoose.Schema.Types.ObjectId,
@@ -56,7 +62,6 @@ UserSchema.statics.authenticate = function(username, password, callback) {
       })
     });
 }
-
 //hashing a password before saving it to the database
 UserSchema.pre('save', function(next) {
   var user = this;
@@ -66,6 +71,7 @@ UserSchema.pre('save', function(next) {
   });
 
 });
+UserSchema.plugin(require('mongoose-autopopulate'));
 
 
 var User = mongoose.model('User', UserSchema);

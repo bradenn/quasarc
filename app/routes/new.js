@@ -94,7 +94,7 @@ router.post('/post', function(req, res, next) {
                     title: req.body.title,
                     realm: realm._id,
                     post: req.body.body,
-                    user: user.username,
+                    user: user._id,
                     date: new Date()
                   }
 
