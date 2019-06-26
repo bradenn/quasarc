@@ -1,5 +1,7 @@
 var mongoose = require('mongoose');
 var bcrypt = require('bcryptjs');
+const crypto = require('crypto');
+var env = require("../config/env.json");
 
 var UserSchema = new mongoose.Schema({
   email: {
@@ -8,6 +10,8 @@ var UserSchema = new mongoose.Schema({
     required: true,
     trim: true
   },
+  firstname: String,
+  lastname: String,
   badge: [String],
   bio: String,
   realms: [{
@@ -15,7 +19,7 @@ var UserSchema = new mongoose.Schema({
     ref: 'Realm',
     autopopulate: true
   }],
-  users:[{
+  users: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
     autopopulate: true
@@ -32,7 +36,8 @@ var UserSchema = new mongoose.Schema({
   password: String,
   picture: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'Picture'
+    ref: 'Picture',
+    autopopulate: true
   },
   code: String,
   friends: [String],
@@ -53,26 +58,35 @@ UserSchema.statics.authenticate = function(username, password, callback) {
         err.status = 401;
         return callback(err);
       }
-      bcrypt.compare(password, user.password, function(err, result) {
-        if (result === true) {
-          return callback(null, user);
-        } else {
-          return callback();
-        }
-      })
+      if (verifyHash(password, user.password)) {
+        return callback(null, user);
+      } else {
+        callback();
+      }
     });
 }
 //hashing a password before saving it to the database
 UserSchema.pre('save', function(next) {
   var user = this;
-  bcrypt.genSalt(10, function(err, salt) {
-    user.password = bcrypt.hashSync(user.password, salt);
-    next();
-  });
-
+  user.password = hashPassword(user.password);
+  next();
 });
 UserSchema.plugin(require('mongoose-autopopulate'));
 
+function hashPassword(password) {
+  const salt = crypto.randomBytes(16).toString('hex');
+  const hash = crypto.pbkdf2Sync(password, salt, 2048, 32, 'sha512').toString('hex');
+  return [salt, hash].join('$');
+}
+
+function verifyHash(password, original) {
+  const originalHash = original.split('$')[1];
+  const salt = original.split('$')[0];
+  const hash = crypto.pbkdf2Sync(password, salt, 2048, 32, 'sha512').toString('hex');
+
+  return hash === originalHash
+
+}
 
 var User = mongoose.model('User', UserSchema);
 module.exports = User;

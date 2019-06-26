@@ -25,8 +25,6 @@ router.get('/:id', function(req, res, next) {
 
 router.post('/upload', upload.single('file'), function(req, res, next) {
 
-
-
   function base64_encode(file) {
     // read binary data
     var bitmap = fs.readFileSync(file);
