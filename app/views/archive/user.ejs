@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include("partials/header"); %>
+
+<body>
+  <%- include("partials/nav"); %>
+  <div class="realm-header">
+    <div class="container">
+      <h4 class="realm-header-title">u/<%= target.username %></h4>
+    </div>
+  </div>
+  <nav class="navbar navbar-expand-lg realm-nav">
+    <div class="container">
+      <ul class="navbar-nav">
+        <li class="nav-item active">
+          <a class="nav-link" href="#">Posts <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Info</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <br>
+  <div class="container">
+    <div class="row" style="margin-bottom: 16px;">
+      <div class="col-md-8">
+        <div class="tab-content">
+          <div class="tab-pane fade active show" id="post">
+            <%- include("partials/smallpost"); %>
+          </div>
+          <div class="tab-pane fade" id="comments">
+            <% if(post.length > 0){ %>
+            <% for (var i = 0; i < post.length; i++) { %>
+            <div class="row">
+              <div class="col-md-12">
+                <a href="/p/<%= post[i]._id %>" class="no-hover">
+                  <div class="card bg-light">
+                    <p class="card-title-span"><%= post[i].title %></p>
+                    <div style="margin-left: 16px;">
+                      <span class="card-sub-span">by <a href="/u/<%= post[i].user %>" class="card-sub-span"><%= post[i].user %></a></span>
+                    </div>
+                    <div class="card-body card-text-body-fade">
+                      <p class="card-text card-text-fade"><%= post[i].post %></p>
+                    </div>
+                  </div>
+                </a>
+              </div>
+            </div>
+            <br>
+            <% } %>
+            <% }else{ %>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="card bg-light">
+                  <div class="card-body">
+                    <p class="card-text " style="text-align:center;">The user u/<%= user.username %> has no comments</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <% } %>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card bg-light">
+              <p class="card-title-span">u/<%= target.username %><span class="float-right" style="margin-right:16px;">
+                  <% if(target.nsfw != null && target.nsfw){ %>
+                  <span class="badge badge-danger nsfw-badge-show">NSFW</span>
+                  <% } %>
+                </span></p>
+              <div style="margin-left: 16px;">
+                <%= target.bio %>
+              </div>
+
+
+              <div class="btn-group realm-button" role="group" aria-label="Basic example">
+
+
+                <%
+                  if(user != null){
+                  var found = false;
+                  for(var i = 0; i < user.users.length; i++) {
+                      if (user.users[i].username == target.username) {
+                          found = true;
+                          break;
+                      }
+                  }
+                  if(found){
+                    %>
+                <a href="/u/e/<%= target._id %>/unfollow" class="btn btn-secondary ">Unfollow</a>
+                <%
+                  }else{
+                    %>
+                <a href="/u/e/<%= target._id %>/follow" class="btn btn-primary ">Follow</a>
+                <%
+                  }
+                }
+                  %>
+              </div>
+
+
+            </div>
+          </div>
+        </div>
+        <br>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

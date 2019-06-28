@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include("partials/header"); %>
+
+<body>
+
+  <%- include("partials/nav"); %>
+  <br>
+  <div class="container">
+
+    <div class="row" style="margin-bottom: 16px;">
+
+      <div class="col-md-9">
+
+        <div class="card bg-light">
+          <p class="card-title-span"><%= post.title %><span class="float-right" style="margin-right:16px;">
+              <% if(post.nsfw != null && post[i].nsfw){ %>
+              <span class="badge badge-danger nsfw-badge-show">NSFW</span>
+              <% } %>
+            </span><span class="text-muted float-right" style="margin-right:0.75em;"><small><%= timeSince(new Date(post.date)); %> ago</small></span></p>
+          <div style="margin-left: 16px;">
+            <span class="card-sub-span">
+              <a href="/r/<%= post.realm.name %>" class="no-bs bold">
+                r/<%= post.realm.name %>
+              </a>&bull; posted by
+              <a href="/u/<%= post.user.username %>" class="no-bs">
+               u/<%= post.user.username %>
+              </a>
+            </span>
+          </div>
+          <hr>
+          <div class="card-body" style="">
+            <p class="card-text"><%= post.post %></p>
+          </div>
+          <hr>
+          <span style=" margin-left: 16px; ">
+            <ul class="list-inline" style="margin-bottom:0px;">
+              <li class="list-inline-item">
+                <% if(post.comments.length === 0){ %> No Comments<% }%>
+                <% if(post.comments.length === 1){ %><%= post.comments.length %> Comment<% }%>
+                <% if(post.comments.length >= 2){ %><%= post.comments.length %> Comments<% }%>
+              </li>
+              <li class="list-inline-item">
+                <a class="post-items" href="#share">Share</a>
+              </li>
+              <li class="list-inline-item">
+                <a class="post-items" href="#report">Report</a>
+              </li>
+            </ul>
+          </span>
+          <hr>
+          <% if(user != null){ %>
+          <form id="post" action="/p/<%= post._id %>" class="comment-body" style="border:none; padding-left: 0;" method="post">
+            <small>Comment as <a href="/profile"><%= user.username %></a></small>
+            <div class="form-group">
+              <div class="row">
+                <div class="col-md-10" style="">
+                  <textarea class="form-control" type="text" id="body" name="body"></textarea>
+                </div>
+                <div class="col-md-2" style="">
+                  <input class="btn btn-primary" type="submit" value="Post">
+                </div>
+              </div>
+            </div>
+
+          </form>
+          <% }else{ %>
+            <p style="margin-left:16px;"><a href="/login">Login to comment.</a></p>
+          <% } %>
+          <hr>
+          <% for (var i = 0; i < post.comments.length; i++) { %>
+          <div class="comment-body">
+            <a href="/u/<%= post.comments[i].author %>" class="comment-header">u/<%= post.comments[i].author %></a>&nbsp;•&nbsp;<span><%= timeSince(new Date(post.date)); %> ago</span><br>
+            <span><%= post.comments[i].body %></span>
+          </div>
+          <% } %>
+          <% if(post.comments.length <= 0){ %>
+          <div class="comment-body">
+            <span>No Comments</span>
+          </div>
+          <% } %>
+        </div>
+
+
+      </div>
+
+      <div class="col-md-3"></div>
+    </div>
+
+
+  </div>
+
+</body>
+
+</html>
+<%
+
+function timeSince(date) {
+
+  var seconds = Math.floor((new Date() - date) / 1000);
+
+  var interval = Math.floor(seconds / 31536000);
+
+  if (interval > 1) {
+    return interval + " years";
+  }
+  interval = Math.floor(seconds / 2592000);
+  if (interval > 1) {
+    return interval + " months";
+  }
+  interval = Math.floor(seconds / 86400);
+  if (interval > 1) {
+    return interval + " days";
+  }
+  interval = Math.floor(seconds / 3600);
+  if (interval > 1) {
+    return interval + " hours";
+  }
+  interval = Math.floor(seconds / 60);
+  if (interval > 1) {
+    return interval + " minutes";
+  }
+  return Math.floor(seconds) + " seconds";
+}
+var aDay = 24*60*60*1000
+%>

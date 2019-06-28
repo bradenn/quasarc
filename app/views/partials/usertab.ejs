@@ -1,0 +1,20 @@
+<div class="card drawer">
+  <div class="user-body" style="margin:8px;">
+    <div class="user-elem">
+      <img src="data:image/png;base64,<%= user.picture.picture %>" style="width:24px; height:24px; border-radius:25%; background-color:blue;">
+      </img>
+    </div>
+    <div class="user-elem">
+      <h6 style="margin-bottom:0;" class="nowrap">&nbsp;<%= user.firstname + " " + user.lastname %></h6>
+    </div>
+  </div>
+</div>
+
+<div class="card drawer">
+  <ul class="list-group">
+    <li class="list-group-item active"><i class="fas fa-stream drawer-icon"></i><a href="#" class="drawer-link">Feed</a></li>
+    <li class="list-group-item"><i class="fas fa-video drawer-icon"></i><a href="#" class="drawer-link">Content</a></li>
+    <li class="list-group-item"><i class="fas fa-balance-scale-left drawer-icon"></i><a href="#" class="drawer-link">Discussion</a></li>
+    <li class="list-group-item"><i class="fas fa-comment drawer-icon"></i><a href="#" class="drawer-link">Messenger</a></li>
+  </ul>
+</div>

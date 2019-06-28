@@ -1,0 +1,27 @@
+<div class="card">
+  <div class="card-head">
+    <p class="card-title">Friends</p>
+  </div>
+  <div class="card-body">
+
+    <% if(user.realms.length > 0){ %>
+    <% for (var i = 0; i < user.users.length; i++) { %>
+    <a href="u/<%= user.users[i].username%>" class="no-bs">
+      <div class="user-body">
+        <div class="user-elem">
+          <img src="data:image/png;base64,<%= user.users[i].picture.picture %>" style="width:24px; height:24px; border-radius:25%; background-color:blue;">
+          </img>
+        </div>
+        <div class="user-elem">
+          <span style="margin-bottom:0; font-weight:400;">&nbsp;<%= user.users[i].firstname + " " + user.users[i].lastname %></span>
+        </div>
+        <div class="user-elem">
+          <span class="float-right" data-toggle="tooltip" data-placement="bottom" title="Friend request is pending"><i class="far fa-clock"></i></span>
+        </div>
+
+
+      </div>
+    </a>
+    <% } } %>
+  </div>
+</div>

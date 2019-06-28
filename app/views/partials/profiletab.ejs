@@ -1,0 +1,22 @@
+<div class="user-body">
+  <div class="user-elem">
+    <img src="data:image/png;base64,<%= user.picture.picture %>" style="width:24px; height:24px; border-radius:25%; background-color:blue;">
+    </img>
+  </div>
+  <div class="user-elem">
+    <h6 style="margin-bottom:0;" class="nowrap"><small><%= user.firstname + " " + user.lastname %></small></h6>
+  </div>
+</div>
+<ul class="list-group" style="margin-top: 16px;">
+  <li class="list-group-item active"><i class="fas fa-pencil-alt"></i>&nbsp;<a href="#">Bio</a></li>
+  <li class="list-group-item"><i class="fas fa-id-card"></i>&nbsp;<a href="#">Profile</a></li>
+  <li class="list-group-item"><i class="fas fa-user-secret"></i>&nbsp;<a href="#">Privacy</a></li>
+  <li class="list-group-item"><i class="fas fa-cog"></i>&nbsp;<a href="#">Settings</a></li>
+</ul>
+<br>
+Bio
+<div class="card">
+  <small>
+    <p style="margin:4px;"><%= user.bio %></p>
+  </small>
+</div>

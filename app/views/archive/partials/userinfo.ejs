@@ -1,0 +1,28 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="card bg-light">
+      <p class="card-title-span">u/<%= user.username %></p>
+      <div style="margin-left: 16px; margin-bottom:16px;">
+        <%= user.bio %>
+        <br>
+        <a href="#" class="" id="bioEdit" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Edit Bio</a>
+
+        <div class="dropdown-menu" aria-labelledby="bioEdit">
+          <form class="px-4" action="/profile/bio" method="post">
+            <div class="form-group">
+              <label for="body">Update bio:</label>
+              <textarea class="form-control" name="body" rows="3"></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-sm" style="width:100%;">Save</button>
+          </form>
+        </div>
+      </div>
+
+      <div class="card-footer">
+        <span style="font-size: 100%;"><%= user.badge.join(" ") %></span>
+
+      </div>
+    </div><br>
+  </div>
+</div>
