@@ -3,20 +3,26 @@
 <div class="row">
   <div class="col-md-12">
     <a href="/p/<%= post[i]._id %>" class="no-hover">
-      <div class="card bg-light">
-        <p class="card-title-span"><%= post[i].title %><span class="float-right" style="margin-right:16px;">
+      <div class="card post-card">
+        <h6 class="card-title-span"><span style="font-size: 90%;"><%= post[i].title %></span><span class="float-right" style="margin-right:16px;">
             <% if(post[i].nsfw != null && post[i].nsfw){ %>
             <span class="badge badge-danger nsfw-badge-show">NSFW</span>
             <% } %>
-          </span><span class="text-muted float-right" style="margin-right:0.75em;"><small><%= timeSince(new Date(post[i].date)); %> ago</small></span></p>
+          </span>
+          <span class="text-muted float-right" style="margin-right:0.75em;">
+            <small><%= timeSince(new Date(post[i].date)); %> ago</small>
+          </span>
+        </h6>
         <div style="margin-left: 16px;">
           <span class="card-sub-span">
+            <small>
             <a href="/r/<%= post[i].realm.name %>" class="no-bs bold">
               r/<%= post[i].realm.name %>
             </a>&bull; posted by
             <a href="/u/<%= post[i].user.username %>" class="no-bs">
-             u/<%= post[i].user.username %>
+              u/<%= post[i].user.username %>
             </a>
+            </small>
           </span>
         </div>
 
@@ -24,9 +30,11 @@
         <span style=" margin-left: 16px;">
           <ul class="list-inline">
             <li class="list-inline-item">
+              <a class="post-items" href="#share">
                 <% if(post[i].comments.length === 0){ %> No Comments<% }%>
                 <% if(post[i].comments.length === 1){ %><%= post[i].comments.length %> Comment<% }%>
                 <% if(post[i].comments.length >= 2){ %><%= post[i].comments.length %> Comments<% }%>
+              </a>
             </li>
             <li class="list-inline-item">
               <a class="post-items" href="#share">Share</a>

@@ -4,118 +4,57 @@
 
 <body>
   <%- include("partials/nav"); %>
-  <div class="realm-header">
-    <div class="container">
-      <h4 class="realm-header-title">r/<%= realm.name %></h4>
-    </div>
-  </div>
-  <nav class="navbar navbar-expand-lg realm-nav">
-    <div class="container">
-      <ul class="navbar-nav">
-        <li class="nav-item active">
-          <a class="nav-link" href="#">Posts <span class="sr-only">(current)</span></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Info</a>
-        </li>
-      </ul>
-    </div>
-  </nav>
+
   <br>
   <div class="container">
-    <div class="row" style="margin-bottom: 16px;">
-      <div class="col-md-8">
-        <div class="tab-content">
-          <div class="tab-pane fade active show" id="post">
-            <% if(realm.nsfw){ %>
-            <%- include("partials/nsfwpost"); %>
-            <% }else{ %>
-            <%- include("partials/smallpost"); %>
-            <% } %>
-          </div>
-          <div class="tab-pane fade" id="comments">
-            <% if(post.length > 0){ %>
-            <% for (var i = 0; i < post.length; i++) { %>
-            <div class="row">
-              <div class="col-md-12">
-                <a href="/p/<%= post[i]._id %>" class="no-hover">
-                  <div class="card bg-light">
-                    <p class="card-title-span"><%= post[i].title %></p>
-                    <div style="margin-left: 16px;">
-                      <span class="card-sub-span">by <a href="/u/<%= post[i].user %>" class="card-sub-span"><%= post[i].user %></a></span>
-                    </div>
-                    <div class="card-body card-text-body-fade">
-                      <p class="card-text card-text-fade"><%= post[i].post %></p>
-                    </div>
+    <div class="row">
+      <div class="col-md-3">
+        <div class="card">
+          <div class="card-body">
+            <div class="user-body">
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="user-elem">
+                    <img src="data:image/png;base64,<%= user.picture.picture %>" style="width:32px; height:32px; border-radius:25%; background-color:blue;">
+                    </img>
                   </div>
-                </a>
-              </div>
-            </div>
-            <br>
-            <% } %>
-            <% }else{ %>
-            <div class="row">
-              <div class="col-md-12">
-                <div class="card bg-light">
-                  <div class="card-body">
-                    <p class="card-text " style="text-align:center;">The user r/<%= realm.name %> has no comments</p>
+                  <div class="user-elem">
+                    <h4 style="margin-bottom:0;" class="nowrap">&nbsp;<small><%= realm.name %></small></h4>
                   </div>
                 </div>
               </div>
             </div>
-            <% } %>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="row">
-          <div class="col-md-12">
-            <div class="card bg-light">
-              <p class="card-title-span">r/<%= realm.name %><span class="float-right" style="margin-right:16px;">
-                  <% if(realm.nsfw != null && realm.nsfw){ %>
-                  <span class="badge badge-danger nsfw-badge-show">NSFW</span>
-                  <% } %>
-                </span></p>
-              <div style="margin-left: 16px;">
-                <%= realm.bio %>
-              </div>
-
-
-              <div class="btn-group realm-button" role="group" aria-label="Basic example">
-
-                <a href="/new/post/<%= realm.name %>" class="btn btn-primary">Post</a>
-                <%
-                  if(user != null){
-                  var found = false;
-                  for(var i = 0; i < user.realms.length; i++) {
-                      if (user.realms[i].name == realm.name) {
-                          found = true;
-                          break;
-                      }
-                  }
-                  if(found){
-                    %>
-                <a href="/r/e/<%= realm._id %>/unfollow" class="btn btn-secondary ">Unfollow</a>
-                <%
-                  }else{
-                    %>
-                <a href="/r/e/<%= realm._id %>/follow" class="btn btn-primary ">Follow</a>
-                <%
-                  }
-                }
-                  %>
-              </div>
-
-
-            </div>
-          </div>
-        </div>
-        <%
-          if(realm.owner.username === user.username){
+            <br>
+            <%
+          if(user != null){
+          var found = false;
+          for(var i = 0; i < user.realms.length; i++) {
+              if (user.realms[i].name == realm.name) {
+                  found = true;
+                  break;
+              }
+          }
+          if(found){
             %>
+            <a href="/r/e/<%= realm._id %>/unfollow" class="btn btn-secondary btn-sm"><i class="fas fa-times"></i>&nbsp;Unfollow</a>
+            <%
+          }else{
+            %>
+            <a href="/r/e/<%= realm._id %>/follow" class="btn btn-primary btn-sm"><i class="fas fa-plus"></i>&nbsp;Follow</a>
+            <%
+          }
+        }
+          %>
+          <a href="/new/post/<%= realm.name %>" class="btn btn-primary btn-sm"><i class="fas fa-plus"></i>&nbsp;Post</a>
+          </div>
+
+        </div>
+
+
+
         <div class="row">
           <div class="col-md-12">
-            <div class="card bg-light">
+            <div class="card">
 
               <p class="card-title-span">Realm Options</p>
 
@@ -135,12 +74,10 @@
             </div>
           </div>
         </div>
-        <%
-        }
-        %>
+
         <div class="row">
           <div class="col-md-12">
-            <div class="card bg-light">
+            <div class="card">
 
               <p class="card-title-span">Moderators</p>
               <%
@@ -174,9 +111,20 @@
             </div>
           </div>
         </div>
+
         <br>
       </div>
+
+      <div class="col-md-9">
+        <% if(realm.nsfw){ %>
+        <%- include("partials/nsfwpost"); %>
+        <% }else{ %>
+        <%- include("partials/smallpost"); %>
+        <% } %>
+      </div>
+
     </div>
+
 </body>
 
 </html>

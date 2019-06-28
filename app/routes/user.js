@@ -30,7 +30,7 @@ router.get('/:username', function(req, res, next) {
                     if (error) {
                       return next(error);
                     } else {
-                      return res.render("new/user", {
+                      return res.render("user", {
                         user: user,
                         post: post,
                         target: target

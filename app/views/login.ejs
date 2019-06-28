@@ -2,28 +2,6 @@
 <html lang="en">
 
 <%- include("partials/header") %>
-<script type="application/x-javascript">
-  addEventListener("load", function() {
-    setTimeout(hideURLbar, 0);
-  }, false);
-
-  function hideURLbar() {
-    window.scrollTo(0, 1);
-  }
-</script>
-<style>
-  body {
-    font-family: 'IBM Plex Sans', sans-serif;
-  }
-
-  /* Set black background color, white text and some padding */
-  footer {
-    background-color: #555;
-    color: white;
-    padding: 15px;
-  }
-</style>
-
 <%- include("partials/nav") %>
 
 <body>
@@ -32,10 +10,9 @@
     <div class="row">
       <div class="col-md-6" style="margin-top:5%;">
 
-        <div class="card bg-light">
-          <div class="card-header">Login</div>
+        <div class="card">
           <div class="card-body">
-
+            <h5>Login</h5>
             <form action="/login" method="post">
               <div class="form-group">
                 <input type="text" onchange="" class="form-control" id="loguser" name="loguser" placeholder="username">
@@ -54,10 +31,9 @@
         </div>
       </div>
       <div class="col-md-6" style="margin-top:5%;">
-        <div class="card bg-light">
-          <div class="card-header">Register</div>
+        <div class="card">
           <div class="card-body">
-
+            <h5>Register</h5>
             <form id="login" action="/login" autocomplete="new-password" method="post" onsubmit="event.preventDefault(); validateMyForm();">
               <div class="form-group">
                 <input type="text" onchange="" autocomplete="off" class="form-control" id="username" name="username" placeholder="username">

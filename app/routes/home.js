@@ -20,9 +20,10 @@ router.get('/', function(req, res, next) {
                 if (error) {
                   return next(error);
                 } else {
-                  return res.render("index", {
+                  return res.render("home", {
                     user: user,
-                    post: post
+                    post: post,
+                    title: 'home'
                   });
                 }
               });
@@ -32,7 +33,7 @@ router.get('/', function(req, res, next) {
               if (error) {
                 return next(error);
               } else {
-                return res.render("index", {
+                return res.render("home", {
                   user: user,
                   post: post
                 });

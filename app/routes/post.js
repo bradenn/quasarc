@@ -70,6 +70,29 @@ router.post('/:id', function(req, res, next) {
   }
 });
 
+router.get('/remove/:id', function(req, res, next) {
+    User.findById(req.session.userId)
+      .exec(function(error, user) {
+        if (error) {
+          return next(error);
+        } else {
+          Post.Text.findById(req.params.id)
+            .exec(function(error, post) {
+              if (error) {
+                return next(error);
+              } else {
+                if(post.user._id.toString() === user._id.toString()){
+                  Post.Text.findByIdAndRemove(post._id, function(error, post){
+
+                  });
+                }
+              }
+            });
+        }
+      });
+      res.redirect("/");
+});
+
 
 
 module.exports = router;

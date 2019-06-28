@@ -21,7 +21,8 @@ router.get('/post/', function(req, res, next) {
                   return res.render("newpost", {
                     user: user,
                     realm: realm,
-                    target: null
+                    target: null,
+                    title: 'post'
                   });
                 } else {
 
@@ -204,5 +205,7 @@ router.post('/realm', function(req, res, next) {
     return next(err);
   }
 });
+
+
 
 module.exports = router;
