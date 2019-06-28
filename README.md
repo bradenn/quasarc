@@ -1,4 +1,5 @@
 # Quasarc
+#### Name change incomming
 ![GitHub release](https://img.shields.io/github/release-pre/bradenn/quasarc.svg)
 ![GitHub top language](https://img.shields.io/github/languages/top/bradenn/quasarc.svg)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/26d9de7283b542aa966e1566259a29de)](https://www.codacy.com/app/bradenn/quasarc?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=bradenn/quasarc&amp;utm_campaign=Badge_Grade)
