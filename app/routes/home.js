@@ -28,17 +28,7 @@ router.get('/', function(req, res, next) {
                 }
               });
         }else{
-          Post.Text.find({}).populate("realm").populate("comments").sort({date: 1})
-            .exec(function(error, post) {
-              if (error) {
-                return next(error);
-              } else {
-                return res.render("home", {
-                  user: user,
-                  post: post
-                });
-              }
-            });
+          return res.redirect("/login");
         }
 
 

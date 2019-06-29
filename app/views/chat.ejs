@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<%- include("partials/header.ejs"); %>
+<%- include("partials/nav.ejs"); %>
+
+<body>
+  <br>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-3">
+        <div class="card">
+          <div class="card-head">
+            <p class="card-title">Friends</p>
+
+          </div>
+          <div class="card-body">
+
+
+
+          </div>
+        </div>
+
+      </div>
+      <div class="col-lg-6">
+        <div class="card">
+          <div class="card-head">
+            <p class="card-title"></p>
+            <% for(var e = 0; e < chat.members.length; e++){ %>
+              <% if(chat.members[e]._id.toString() != user._id.toString()){ %>
+            <a href="chat/<%= chat %>" class="no-bs">
+              <div class="user-body">
+                <div class="user-elem">
+                  <img src="data:image/png;base64,<%= chat.members[e].picture.picture %>" style="width:24px; height:24px; border-radius:25%; background-color:blue;">
+                  </img>
+                </div>
+                <div class="user-elem">
+                  <span style="margin-bottom:0; font-weight:400;">&nbsp;<%= chat.members[e].firstname + " " + chat.members[e].lastname %></span>
+                </div>
+              </div>
+            </a>
+            <% } } %>
+          </div>
+          <div class="card-body">
+
+            <% if(typeof messages != 'undefined'){ %>
+              <% for (var i = 0; i < messages.length; i++) { %>
+                <% if(messages[i].from.toString() != user._id.toString()){ %>
+                  <p class="badge badge-secondary float-left"><%= messages[i].message %></p>
+                <% }else{ %>
+                  <p class="badge badge-primary float-right"><%= messages[i].message %></p>
+                <% } %>
+                <br>
+              <% } %>
+            <%}else{ %>
+              <p class="card-subtitle">No Messages</p>
+            <% }%>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3">
+
+        <%- include("partials/footer"); %>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

@@ -1,28 +1,36 @@
 var router = require('express').Router();
 var Picture = require('../models/picture');
 var User = require('../models/user');
-var fs = require('fs');
-const multer = require('multer')
-const upload = multer({
-  dest: 'uploads/'
-})
 
-router.get('/:id', function(req, res, next) {
 
-  Picture.findById(req.params.id)
-    .exec(function(error, pic) {
-      if (error) {
-        return next(error);
-      } else {
-        var thumb = pic.picture;
-        res.render('picture', {
-          title: 'Express',
-          img: thumb
-        });
-      }
+const upload = require('../services/aws-upload');
+const singleUpload = upload.single('image');
+
+router.post('/image-upload', function(req, res) {
+  singleUpload(req, res, function(err) {
+    if (err) {
+      return res.status(422).send({
+        errors: [{
+          title: 'Image Upload Error',
+          detail: err.message
+        }]
+      });
+    }
+    User.findOne({
+      _id: req.session.userId
+    }, function(err, user) {
+      user.picture = req.file.location;
+      user.save(function(err) {
+        if (err) {
+        }
+        res.redirect(req.get('referer'));
+      })
+
     });
-});
 
+  });
+});
+/*
 router.post('/upload', upload.single('file'), function(req, res, next) {
 
   function base64_encode(file) {
@@ -58,5 +66,6 @@ router.post('/upload', upload.single('file'), function(req, res, next) {
 
   });
 });
+*/
 
 module.exports = router;
