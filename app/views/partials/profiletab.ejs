@@ -9,9 +9,11 @@
     </div>
   </div>
 </div>
+<% if(spotify != null){ %>
 <div class="card">
   <iframe src="https://open.spotify.com/embed/track/<%= spotify.item.id %>" height="80" frameborder="0" style="width:100%; border-radius:4px;" allowtransparency="true" allow="encrypted-media"></iframe>
 </div>
+<% } %>
 <div class="card drawer">
   <ul class="list-group" id="myTab" role="tablist">
     <li class="list-group-item active"><i class="fas fa-pencil-alt"></i>&nbsp;<a href="#">Bio</a></li>
