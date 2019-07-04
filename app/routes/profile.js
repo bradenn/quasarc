@@ -30,7 +30,7 @@ router.get('/', function(req, res, next) {
             request(options, function(e, r, obj) {
               return res.render("profile", {
                 user: user,
-                spotify: JSON.parse(obj)
+                spotify: (obj != null)? JSON.parse(obj): null
               });
             })
           })
