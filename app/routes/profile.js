@@ -17,7 +17,7 @@ router.get('/', function(req, res, next) {
         } else {
           if(user.spotify_account != null){
           const optionsA = {
-            url: "http://localhost:3011/refresh_token?refresh_token=" + user.spotify_account.refresh_token,
+            url: "http://nossl.bradenn.com:3011/refresh_token?refresh_token=" + user.spotify_account.refresh_token,
           };
           request(optionsA, function(e, r, objA) {
             var access_token = JSON.parse(objA).access_token;
