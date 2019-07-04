@@ -47,4 +47,50 @@ router.get('/:id', function(req, res, next) {
       }
     });
 });
+
+router.get('/', function(req, res, next) {
+  User.findById(req.session.userId)
+    .exec(function(error, user) {
+      if (error) {
+        return next(error);
+      } else {
+        if (user != null) {
+          Chat.findOne({
+              _id: req.params.id
+            })
+            .exec(function(error, chat) {
+              if (error) {
+                return next(error);
+              } else {
+                if (chat != null) {
+                  ChatMessage.find({
+                      chat: chat._id
+                    })
+                    .exec(function(error, messages) {
+                      if (error) {
+                        return next(error);
+                      } else {
+                        return res.render("chat", {
+                          user: user,
+                          chat: chat,
+                          messages: messages
+                        });
+                      }
+                    });
+                } else {
+                  return res.render("chat", {
+                    user: user,
+                    chat: chat
+                  });
+                }
+              }
+            });
+        } else {
+          res.redirect("login")
+        }
+
+
+      }
+    });
+});
 module.exports = router;

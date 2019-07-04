@@ -8,76 +8,120 @@
 <body>
   <br>
   <div class="container">
+
     <div class="row">
+
+      <div class="col-md-1" style="margin-top:5%;"></div>
       <div class="col-md-8" style="margin-top:5%;">
+
         <div class="card bg-light">
-          <div class="card-header">New Post</div>
+          <div class="card-head">
+            <span class="card-title">New Post</span>
+            <ul class="nav nav-pills mb-3 float-right" id="pills-tab" role="tablist">
+              <li class="nav-item">
+                <a class="card-black active" id="pills-text-tab" data-toggle="pill" href="#pills-text" role="tab" aria-controls="pills-text" aria-selected="true">Text</a>
+              </li>
+              <li class="nav-item">
+                <a class="card-black" id="pills-media-tab" data-toggle="pill" href="#pills-media" role="tab" aria-controls="pills-media" aria-selected="false">Media</a>
+              </li>
+              <li class="nav-item">
+                <a class="card-black" id="pills-link-tab" data-toggle="pill" href="#pills-link" role="tab" aria-controls="pills-link" aria-selected="false">Link</a>
+              </li>
+            </ul>
+
+            <p class="card-subtitle">Submit content</p>
+          </div>
           <div class="card-body">
 
-            <form id="post" action="/new/post" method="post">
-              <div class="row">
-                <div class="col-md-8">
-                  <div class="form-group">
-                    <label>Title</label>
-                    <input type="text" onchange="" class="form-control" id="title" name="title" placeholder="Title">
+            <div class="tab-content" id="pills-tabContent">
+              <div class="tab-pane fade show active" id="pills-text" role="tabpanel" aria-labelledby="pills-home-tab"><form id="post" action="/new/post" method="post">
+                <div class="row">
+                  <div class="col-md-8">
+                    <div class="form-group">
+                      <label>Title</label>
+                      <input type="text" onchange="" class="form-control" id="title" name="title" placeholder="Title">
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label>Post section</label>
+                      <select class="form-control" id="section" name="section">
+                        <% if(target != null){
+                          %>
+                        <option><%= target %></option>
+                        <%
+                        } %>
+                        <optgroup label="_________">
+                          <% for (var i = 0; i < realm.length; i++) { %>
+                          <option><%= realm[i].name %></option>
+                          <% } %>
+                        </optgroup>
+
+                      </select>
+                    </div>
                   </div>
                 </div>
-                <div class="col-md-4">
-                  <div class="form-group">
-                    <label>Post section</label>
-                    <select class="form-control" id="section" name="section">
-                      <% if(target != null){
-                        %>
-                      <option><%= target %></option>
-                      <%
-                      } %>
-                      <optgroup label="_________">
-                        <% for (var i = 0; i < realm.length; i++) { %>
-                        <option><%= realm[i].name %></option>
-                        <% } %>
-                      </optgroup>
 
-                    </select>
+                <div class="form-group">
+                  <label>Post</label>
+                  <textarea class="form-control" id="body" name="body" rows="3"></textarea>
+                </div>
+
+                <div class="form-group">
+                  <input class="btn btn-primary" type="submit" value="Post">
+                </div>
+
+
+              </form></div>
+              <div class="tab-pane fade" id="pills-media" role="tabpanel" aria-labelledby="pills-home-tab"><form id="post" action="/new/post" method="post">
+                <div class="row">
+                  <div class="col-md-8">
+                    <div class="form-group">
+                      <label>Title</label>
+                      <input type="text" onchange="" class="form-control" id="title" name="title" placeholder="Title">
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label>Post section</label>
+                      <select class="form-control" id="section" name="section">
+                        <% if(target != null){
+                          %>
+                        <option><%= target %></option>
+                        <%
+                        } %>
+                        <optgroup label="_________">
+                          <% for (var i = 0; i < realm.length; i++) { %>
+                          <option><%= realm[i].name %></option>
+                          <% } %>
+                        </optgroup>
+
+                      </select>
+                    </div>
                   </div>
                 </div>
-              </div>
 
-              <div class="form-group">
-                <label>Post</label>
-                <textarea class="form-control" id="body" name="body" rows="3"></textarea>
-              </div>
+                <div class="form-group">
+                  <label>Media</label>
+                  <textarea class="form-control" id="body" name="body" rows="3"></textarea>
+                </div>
 
-              <div class="form-group">
-                <input class="btn btn-primary" type="submit" value="Post">
-              </div>
+                <div class="form-group">
+                  <input class="btn btn-primary" type="submit" value="Post">
+                </div>
 
 
-            </form>
+              </form></div>
+            </div>
+
 
           </div>
         </div>
       </div>
-      <div class="col-md-2" style="margin-top:5%;"></div>
+      <div class="col-md-1" style="margin-top:5%;"></div>
     </div>
   </div>
 
 </body>
-<script type="text/javascript">
-  var quill = new Quill('#editor-container', {
-    modules: {
-      toolbar: [
-        ['bold', 'italic'],
-        ['link', 'blockquote'],
-        [{
-          list: 'ordered'
-        }, {
-          list: 'bullet'
-        }]
-      ]
-    },
-    placeholder: 'Write your post here',
-    theme: 'snow'
-  });
-</script>
 
 </html>

@@ -1,31 +1,62 @@
-<div class="user-body">
-  <div class="user-elem">
-    <img src="<%= user.picture %>" style="width:24px; height:24px; border-radius:25%; background-color:blue;">
-    </img>
-  </div>
-  <div class="user-elem">
-    <h6 style="margin-bottom:0;" class="nowrap"><small><%= user.firstname + " " + user.lastname %></small></h6>
-  </div>
-</div>
-<a href="#" id="addMod" class="dropdown-toggle no-bs" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><small>Change Profile Picture</small></a>
-<div class="dropdown-menu" style="max-width: 15em;" aria-labelledby="addMod">
-  <form class="px-4" action="/picture/image-upload" method="post" enctype="multipart/form-data">
-    <div class="form-group">
-      <input type="file" name="image" id="image">
+<div class="card drawer">
+  <div class="user-body">
+    <div class="user-elem">
+      <img src="<%= user.picture %>" style="width:24px; height:24px; border-radius:25%; background-color:blue;">
+      </img>
     </div>
-    <button type="submit" class="btn btn-primary btn-sm" style="width:100%;">Upload</button>
-  </form>
+    <div class="user-elem">
+      <h6 style="margin-bottom:0;" class="nowrap">&nbsp;<%= user.firstname + " " + user.lastname %></h6>
+    </div>
+  </div>
 </div>
-<ul class="list-group" style="margin-top: 16px;">
-  <li class="list-group-item active"><i class="fas fa-pencil-alt"></i>&nbsp;<a href="#">Bio</a></li>
-  <li class="list-group-item"><i class="fas fa-id-card"></i>&nbsp;<a href="#">Profile</a></li>
-  <li class="list-group-item"><i class="fas fa-user-secret"></i>&nbsp;<a href="#">Privacy</a></li>
-  <li class="list-group-item"><i class="fas fa-cog"></i>&nbsp;<a href="#">Settings</a></li>
-</ul>
-<br>
-Bio
 <div class="card">
-  <small>
-    <p style="margin:4px;"><%= user.bio %></p>
-  </small>
+  <iframe src="https://open.spotify.com/embed/track/<%= spotify.item.id %>" height="80" frameborder="0" style="width:100%; border-radius:4px;" allowtransparency="true" allow="encrypted-media"></iframe>
+</div>
+<div class="card drawer">
+  <ul class="list-group" id="myTab" role="tablist">
+    <li class="list-group-item active"><i class="fas fa-pencil-alt"></i>&nbsp;<a href="#">Bio</a></li>
+    <li class="list-group-item"><i class="fas fa-id-card"></i>&nbsp;<a href="#">Profile</a></li>
+    <li class="list-group-item"><i class="fas fa-user-secret"></i>&nbsp;<a href="#">Privacy</a></li>
+    <li class="list-group-item"><i class="fas fa-cog"></i>&nbsp;<a href="#">Settings</a></li>
+  </ul>
+</div>
+<div class="card">
+  <div class="card-head">
+    <p class="card-title">Bio</p>
+  </div>
+  <div class="card-body">
+    <p><%= user.bio %></p>
+    <a href="#" class="" id="bioEdit" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><small>Edit Bio</small></a>
+
+    <div class="dropdown-menu" aria-labelledby="bioEdit">
+      <form class="px-4" action="/profile/bio" method="post">
+        <div class="form-group">
+          <label for="body">Update bio:</label>
+          <textarea class="form-control" name="body" rows="3"></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-sm" style="width:100%;">Save</button>
+      </form>
+    </div>
+  </div>
+</div>
+<div class="card">
+  <div class="card-head">
+    <p class="card-title">Linked Accounts</p>
+  </div>
+  <div class="card-body">
+    <div class="linked-items">
+      <div class="linked-item">
+        <img src="/img/Spotify_Logo_RGB_Green.png" style="width:70px;" />
+      </div>
+      <div class="linked-item float-right">
+        <% if(user.spotify_account.refresh_token != null){ %>
+        <a href="#" class="btn btn-secondary btn-sm disabled">Connected</a>
+        <% }else{ %>
+          <a href="http://nossl.bradenn.com:3011/login" class="btn btn-primary btn-sm">Connect</a>
+        <% } %>
+      </div>
+    </div>
+
+  </div>
 </div>

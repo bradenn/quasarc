@@ -6,6 +6,7 @@ var TextSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  media: String,
   post: {
     type: String,
     unique: false,

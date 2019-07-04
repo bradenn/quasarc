@@ -16,6 +16,7 @@ router.use('/chat', require('./chat.js'));
 router.use('/picture', require('./picture.js'));
 router.use('/404', require('./404.js'));
 router.use('/beta', require('./home.js'));
+router.use('/linked', require('./linked.js'));
 
 // GET for logout logout
 router.get('/logout', function (req, res, next) {

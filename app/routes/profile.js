@@ -2,6 +2,8 @@ var router = require('express').Router();
 var User = require('../models/user');
 var Post = require('../models/textpost');
 var Picture = require('../models/picture');
+const request = require("request");
+
 
 router.get('/', function(req, res, next) {
 
@@ -13,17 +15,37 @@ router.get('/', function(req, res, next) {
         if (user === null) {
           return res.redirect('/login');
         } else {
-          Post.Text.find({user: req.session.userId}).populate("comments").populate("realm")
-            .exec(function(error, post) {
+          if(user.spotify_account != null){
+          const optionsA = {
+            url: "http://localhost:3011/refresh_token?refresh_token=" + user.spotify_account.refresh_token,
+          };
+          request(optionsA, function(e, r, objA) {
+            var access_token = JSON.parse(objA).access_token;
+            const options = {
+              url: "https://api.spotify.com/v1/me/player/currently-playing",
+              headers: {
+                'Authorization': 'Bearer ' + access_token
+              }
+            };
+            request(options, function(e, r, obj) {
               return res.render("profile", {
                 user: user,
-                post: post
+                spotify: JSON.parse(obj)
               });
-            });
+            })
+          })
+        }else{
+          return res.render("profile", {
+            user: user,
+            spotify: null
+          });
+        }
+
         }
       }
     });
 });
+
 
 router.post('/:type', function(req, res, next) {
   if (req.params.type == "badge") {

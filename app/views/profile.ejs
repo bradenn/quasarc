@@ -15,13 +15,53 @@
       <div class="col-lg-3">
         <%- include("partials/profiletab"); %>
       </div>
-      <div class="col-md-3">
+      <div class="col-md-7">
         <div class="card">
-          <form action="/picture/image-upload" method="post" enctype="multipart/form-data">
-            Select image to upload:
-            <input type="file" name="image" id="image">
-            <input type="submit" value="Upload Image" name="submit">
-          </form>
+          <div class="card-head">
+            <p class="card-title">
+              Edit Profile
+            </p>
+            <p class="card-subtitle">
+              Change basic infromation on your profile
+            </p>
+          </div>
+          <div class="card-body">
+            <div class="form-element">
+              <div class="form-group form-group-block">
+                <label class="form-nomargin">Email</label>
+                <small class="form-text text-muted form-nomargin"><%= user.email %></small>
+              </div>
+              <div class="form-group form-group-block float-right">
+                <a href="#" class="btn btn-primary" class="btn btn-primary" data-toggle="modal" data-target="#emailModal">Change</a>
+              </div>
+            </div>
+            <div class="form-element">
+              <div class="form-group form-group-block">
+                <label class="form-nomargin">Password</label>
+                <small class="form-text text-muted form-nomargin">You can change your password here</small>
+              </div>
+              <div class="form-group form-group-block float-right">
+                <a href="#" class="btn btn-primary" class="btn btn-primary" data-toggle="modal" data-target="#passwordModal">Change</a>
+              </div>
+            </div>
+            <div class="form-element">
+              <div class="form-group form-group-block">
+                <label class="form-nomargin">Profile Picture</label>
+                <small class="form-text text-muted form-nomargin">What others see on your profile.</small>
+              </div>
+              <div class="form-group form-group-block float-right">
+                <form action="/picture/image-upload" method="post" enctype="multipart/form-data">
+                  <div class="form-group">
+                    <input type="file" name="image" id="image">
+                    <button type="submit" class="btn btn-primary">Upload</button>
+                  </div>
+
+                </form>
+                </div>
+            </div>
+
+
+          </div>
         </div>
       </div>
       <br>
@@ -29,5 +69,61 @@
   </div>
   </div>
 </body>
+<div class="modal fade" id="emailModal" tabindex="-1" role="dialog" aria-labelledby="emailModal" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Change Email</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form action="/profile/email" method="post">
+        <div class="modal-body">
+          <div class="form-group">
+            <label for="body">New Email</label>
+            <input type="email" class="form-control" name="body"></input>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary">Save</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="passwordModal" tabindex="-1" role="dialog" aria-labelledby="emailModal" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Change Password</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form action="/profile/email" method="post">
+        <div class="modal-body">
+          <div class="form-group">
+            <label for="body">Current Password</label>
+            <input type="password" class="form-control" name="body"></input>
+          </div>
+          <div class="form-group">
+            <label for="body">New Password</label>
+            <input type="password" class="form-control" name="body"></input>
+          </div>
+          <div class="form-group">
+            <label for="body">New Password (repeat)</label>
+            <input type="password" class="form-control" name="body"></input>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary">Save</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
 
 </html>

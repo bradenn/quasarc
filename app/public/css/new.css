@@ -6,9 +6,8 @@ html {
   --nav-brand: #fff;
 }
 
-html[data-theme='dark'] {
+html[data-theme='dark'] {}
 
-}
 body {
   background-color: var(--bg);
   font-family: Roboto, sans-serif;
@@ -18,24 +17,71 @@ table {
   margin: 0;
   padding: 0;
 }
-.card-head{
+
+.linked-items{
+  margin-bottom: auto;
+}
+.linked-item{
+  vertical-align: middle;
+  display: inline-block;
+}
+
+.form-element{
+  display: inline-block;
+  width:100%;
+}
+.card-black {
+  padding: 4px;
+  font-size: 13px;
+  border-radius: 4px;
+  border: none;
+  margin-bottom: 8px;
+  transition: 0.15s;
+  padding-left: 16px;
+  padding-right: 16px;
+  font-weight: 500;
+  background-color: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  color: rgba(0, 0, 0, 0.88);
+  text-decoration: none;
+}
+
+.card-black:hover{
+  text-decoration: none;
+}
+
+.card-black.active{
+  background-color: rgba(25, 118, 210, 0.12);
+  color: rgba(25, 118, 210);
+}
+
+.form-group-block{
+  display: inline-block;
+  vertical-align: middle;
+}
+.card-head {
   margin: 16px;
-  margin-bottom:0;
+  margin-bottom: 0;
 }
-.dropdown-menu{
-    box-shadow: rgba(0, 0, 0, 0.2) 0px 5px 5px -3px, rgba(0, 0, 0, 0.14) 0px 8px 10px 1px, rgba(0, 0, 0, 0.12) 0px 3px 14px 2px;
-    margin-top: 0;
-    border-top-left-radius: 0px;
-    border-top-right-radius: 0px;
-    z-index: 0.5;
-    border-top: none;
+.form-nomargin{
+    margin: 0;
 }
+.dropdown-menu {
+  box-shadow: 0 1px 1px 0 rgba(60, 64, 67, .08), 0 1px 3px 1px rgba(60, 64, 67, .16);
+  margin-top: 0;
+  border-top-left-radius: 0px;
+  border-top-right-radius: 0px;
+  z-index: 0.5;
+  border-top: none;
+}
+
 .card-title {
   font-size: 20px;
   font-weight: 500;
   line-height: 32px;
   letter-spacing: 0.25px;
-  margin:0;
+  margin: 0;
 }
 
 .card-body {
@@ -48,7 +94,7 @@ table {
   line-height: 22px;
   letter-spacing: 0.1px;
   color: rgba(0, 0, 0, 0.54);
-  margin:0;
+  margin: 0;
 }
 
 .drawer {
@@ -68,7 +114,7 @@ table {
 .navbar {
   padding: 0rem 1rem;
   background-color: var(--primary) !important;
-  box-shadow: 0 2px 4px -1px rgba(0,0,0,.2), 0 4px 5px 0 rgba(0,0,0,.14), 0 1px 10px 0 rgba(0,0,0,.12);
+  box-shadow: 0 2px 4px -1px rgba(0, 0, 0, .2), 0 4px 5px 0 rgba(0, 0, 0, .14), 0 1px 10px 0 rgba(0, 0, 0, .12);
 }
 
 .navbar-brand {

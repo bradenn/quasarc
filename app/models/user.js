@@ -33,6 +33,11 @@ var UserSchema = new mongoose.Schema({
     unique: true,
     required: true
   },
+  spotify_account: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'SpotifyAccount',
+    autopopulate: true
+  },
   password: String,
   picture: String,
   code: String,
