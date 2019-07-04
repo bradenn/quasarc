@@ -30,8 +30,8 @@ router.post('/', function(req, res, next) {
   }
 
   if (req.body.email &&
-    req.body.username &&
-    req.body.password &&
+    req.body.username && req.body.firstname &&
+    req.body.password && req.body.lastname &&
     req.body.passwordConf) {
 
     let r = Math.random().toString(36).substring(7);
@@ -39,6 +39,8 @@ router.post('/', function(req, res, next) {
     var userData = {
       email: req.body.email,
       username: req.body.username,
+      firstname: req.body.firstname,
+      lastname: req.body.lastname,
       password: req.body.password,
       code: r
     }
