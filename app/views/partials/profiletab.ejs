@@ -9,7 +9,7 @@
     </div>
   </div>
 </div>
-<% if(spotify != null){ %>
+<%  if(spotify != ""){ spotify = JSON.parse(spotify); %>
 <div class="card">
   <iframe src="https://open.spotify.com/embed/track/<%= spotify.item.id %>" height="80" frameborder="0" style="width:100%; border-radius:4px;" allowtransparency="true" allow="encrypted-media"></iframe>
 </div>
