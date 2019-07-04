@@ -52,7 +52,7 @@
         <img src="/img/Spotify_Logo_RGB_Green.png" style="width:70px;" />
       </div>
       <div class="linked-item float-right">
-        <% if(user.spotify_account.refresh_token != null){ %>
+        <% if(spotify != null){ %>
         <a href="#" class="btn btn-secondary btn-sm disabled">Connected</a>
         <% }else{ %>
           <a href="http://nossl.bradenn.com:3011/login" class="btn btn-primary btn-sm">Connect</a>
