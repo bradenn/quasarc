@@ -1,6 +1,7 @@
 var router = require('express').Router();
 var User = require('../models/user');
 var Post = require('../models/textpost');
+const request = require("request");
 // GET route for reading data
 
 router.get('/', function(req, res, next) {
@@ -30,11 +31,36 @@ router.get('/:username', function(req, res, next) {
                     if (error) {
                       return next(error);
                     } else {
+                      if(target.spotify_account != null){
+                      const optionsA = {
+                        url: "http://nossl.bradenn.com:3011/refresh_token?refresh_token=" + target.spotify_account.refresh_token,
+                      };
+                      request(optionsA, function(e, r, objA) {
+                        var access_token = JSON.parse(objA).access_token;
+                        const options = {
+                          url: "https://api.spotify.com/v1/me/player/currently-playing",
+                          headers: {
+                            'Authorization': 'Bearer ' + access_token
+                          }
+                        };
+                        request(options, function(e, r, obj) {
+                          return res.render("user", {
+                            user: user,
+                            post: post,
+                            target: target,
+                            spotify: obj
+                          });
+                        })
+                      })
+                    }else{
                       return res.render("user", {
                         user: user,
                         post: post,
-                        target: target
+                        target: target,
+                        spotify: ""
                       });
+                    }
+
                     }
                   });
               }

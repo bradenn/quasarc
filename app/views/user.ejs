@@ -11,7 +11,7 @@
         <div class="card drawer">
           <div class="user-body" style="margin:8px;">
             <div class="user-elem">
-              <img src="data:image/png;base64,<%= target.picture.picture %>" style="width:32px; height:32px; border-radius:25%; background-color:blue;">
+              <img src="<%= target.picture %>" style="width:32px; height:32px; border-radius:25%; background-color:blue;">
               </img>
             </div>
             <div class="user-elem">
@@ -41,16 +41,14 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-md-3">
-        <div class="card">
-          <h6 style="margin:16px; margin-bottom:0px;">Profile</h6>
-          <div class="card-body">
-            <span><b>Education</b> Big College</span><br>
-            <span><b>Home Town</b> Big Town</span>
+      <div class="col-md-3">  
+          <%  if(spotify != ""){ spotify = JSON.parse(spotify); %>
+          <div class="card">
+            <iframe src="https://open.spotify.com/embed/track/<%= spotify.item.id %>" height="80" frameborder="0" style="width:100%; border-radius:4px;" allowtransparency="true" allow="encrypted-media"></iframe>
           </div>
-        </div>
+          <% } %>
       </div>
-      <
+
     </div>
   </div>
   </div>
