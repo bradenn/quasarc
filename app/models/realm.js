@@ -17,10 +17,7 @@ var RealmSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User'
   }],
-  picture: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Picture'
-  }
+  picture: String
 });
 
 var Realm = mongoose.model('Realm', RealmSchema);

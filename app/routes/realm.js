@@ -47,6 +47,10 @@ router.get('/:realm', function(req, res, next) {
 
 });
 
+const upload = require('../services/aws-upload');
+const singleUpload = upload.single('image');
+
+
 router.post('/manage/:realm/:action', function(req, res, next) {
   if (req.params.action == "addmod") {
     Realm.findOne({
@@ -67,9 +71,9 @@ router.post('/manage/:realm/:action', function(req, res, next) {
                           moderator: [target._id]
                         }
                       }, function(err, eh) {
-                        if(err || error){
+                        if (err || error) {
                           console.log(err + error);
-                        }else{
+                        } else {
 
 
                         }
@@ -86,6 +90,46 @@ router.post('/manage/:realm/:action', function(req, res, next) {
 
         }
       });
+  }
+  if (req.params.action == "changepic") {
+    singleUpload(req, res, function(err) {
+      if (err) {
+        return res.status(422).send({
+          errors: [{
+            title: 'Image Upload Error',
+            detail: err.message
+          }]
+        });
+      }
+      Realm.findOne({
+          name: req.params.realm
+        })
+        .exec(function(error, realm) {
+          if (realm != null) {
+            User.findById(req.session.userId)
+              .exec(function(error, user) {
+                if (realm.owner.toString() === user._id.toString()) {
+                  Realm.findById(realm._id, function(err, eh) {
+                    if (err || error) {
+                      console.log(err + error);
+                    } else {
+                      eh.picture = req.file.location;
+                      eh.save(function(err) {
+
+                      });
+                    }
+                  });
+                } else {
+                  console.log("Must be owner of realm")
+                }
+              });
+          } else {
+            console.log("Realm not found")
+
+
+          }
+        });
+    });
   }
   res.redirect(req.get('referer'));
 });

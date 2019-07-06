@@ -6,7 +6,7 @@
 
     <% if(user.realms.length > 0){ %>
     <% for (var i = 0; i < user.realms.length; i++) { %>
-    <a href="u/<%= user.realms[i].name%>" class="no-bs">
+    <a href="r/<%= user.realms[i].name%>" class="no-bs">
       <div class="user-body">
         <div class="user-elem">
           <img src="<%= user.realms[i].picture %>" style="width:24px; height:24px; border-radius:25%; background-color:blue;">

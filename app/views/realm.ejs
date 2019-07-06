@@ -15,7 +15,7 @@
               <div class="row">
                 <div class="col-md-12">
                   <div class="user-elem">
-                    <img src="data:image/png;base64,<%= user.picture.picture %>" style="width:32px; height:32px; border-radius:25%; background-color:blue;">
+                    <img src="<%= realm.picture %>" style="width:32px; height:32px; border-radius:25%; background-color:blue;">
                     </img>
                   </div>
                   <div class="user-elem">
@@ -45,7 +45,7 @@
           }
         }
           %>
-          <a href="/new/post/<%= realm.name %>" class="btn btn-primary btn-sm"><i class="fas fa-plus"></i>&nbsp;Post</a>
+            <a href="/new/post/<%= realm.name %>" class="btn btn-primary btn-sm"><i class="fas fa-plus"></i>&nbsp;Post</a>
           </div>
 
         </div>
@@ -54,20 +54,34 @@
 
         <div class="row">
           <div class="col-md-12">
-            <div class="card">
+            <div class="card" style="padding-bottom:16px;">
 
               <p class="card-title-span">Realm Options</p>
 
-              <a href="#" id="addMod" class="dropdown-toggle mar-75" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Add Moderator</a>
-              <div class="dropdown-menu" aria-labelledby="addMod">
-                <form class="px-4" action="/realm/manage/<%= realm.name %>/addmod" method="post">
-                  <div class="form-group">
-                    <label for="body">Username:</label>
-                    <input type="text" class="form-control" name="username" rows="3"></input>
-                  </div>
+              <div class="dropdown">
+                <a href="#" id="addMod" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" style="margin-left:16px;" aria-expanded="false">Add Moderator</a>
+                <div class="dropdown-menu" aria-labelledby="addMod">
+                  <form class="px-4" action="/realm/manage/<%= realm.name %>/addmod" method="post">
+                    <div class="form-group">
+                      <label for="body">Username:</label>
+                      <input type="text" class="form-control" name="username" rows="3"></input>
+                    </div>
 
-                  <button type="submit" class="btn btn-primary btn-sm" style="width:100%;">Add</button>
-                </form>
+                    <button type="submit" class="btn btn-primary btn-sm" style="width:100%;">Add</button>
+                  </form>
+                </div>
+              </div>
+              <div class="dropdown">
+                <a href="#" id="changePic" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" style="margin-left:16px;" aria-expanded="false">Change Picture</a>
+                <div class="dropdown-menu" aria-labelledby="changePic" id="changePic">
+                  <form class="px-4" action="/realm/manage/<%= realm.name %>/changepic" method="post" enctype="multipart/form-data">
+                    <div class="form-group">
+                      <input type="file" name="image" id="image">
+                      <button type="submit" class="btn btn-primary">Upload</button>
+                    </div>
+
+                  </form>
+                </div>
               </div>
 
 
@@ -115,12 +129,15 @@
         <br>
       </div>
 
-      <div class="col-md-9">
+      <div class="col-md-6">
         <% if(realm.nsfw){ %>
         <%- include("partials/nsfwpost"); %>
         <% }else{ %>
         <%- include("partials/smallpost"); %>
         <% } %>
+      </div>
+      <div class="col-md-3">
+        <%- include("partials/friends"); %>
       </div>
 
     </div>

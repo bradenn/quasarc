@@ -18,18 +18,20 @@ table {
   padding: 0;
 }
 
-.linked-items{
+.linked-items {
   margin-bottom: auto;
 }
-.linked-item{
+
+.linked-item {
   vertical-align: middle;
   display: inline-block;
 }
 
-.form-element{
+.form-element {
   display: inline-block;
-  width:100%;
+  width: 100%;
 }
+
 .card-black {
   padding: 4px;
   font-size: 13px;
@@ -47,26 +49,29 @@ table {
   text-decoration: none;
 }
 
-.card-black:hover{
+.card-black:hover {
   text-decoration: none;
 }
 
-.card-black.active{
+.card-black.active {
   background-color: rgba(25, 118, 210, 0.12);
   color: rgba(25, 118, 210);
 }
 
-.form-group-block{
+.form-group-block {
   display: inline-block;
   vertical-align: middle;
 }
+
 .card-head {
   margin: 16px;
   margin-bottom: 0;
 }
-.form-nomargin{
-    margin: 0;
+
+.form-nomargin {
+  margin: 0;
 }
+
 .dropdown-menu {
   box-shadow: 0 1px 1px 0 rgba(60, 64, 67, .08), 0 1px 3px 1px rgba(60, 64, 67, .16);
   margin-top: 0;
@@ -86,6 +91,17 @@ table {
 
 .card-body {
   padding: 16px;
+}
+
+.post-image {
+  max-width: 100%;
+  height: auto;
+  max-height: 512px;
+  width: 100%;
+  padding: 16px;
+  margin: 0px auto;
+  vertical-align: baseline;
+  overflow: hidden;
 }
 
 .card-subtitle {

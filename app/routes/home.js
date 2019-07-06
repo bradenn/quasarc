@@ -15,7 +15,7 @@ router.get('/', function(req, res, next) {
           for(var i = 0; i < user.realms.length; i++){
             t.push(user.realms[i]._id);
           }
-            Post.Text.find({'realm': { $in: t }}).populate("realm").populate("comments").sort({date: 1})
+            Post.Text.find({'realm': { $in: t }}).populate("realm").populate("comments").sort({date: -1})
               .exec(function(error, post) {
                 if (error) {
                   return next(error);

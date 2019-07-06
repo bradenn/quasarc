@@ -32,9 +32,9 @@
             <p class="card-subtitle">Submit content</p>
           </div>
           <div class="card-body">
-
             <div class="tab-content" id="pills-tabContent">
-              <div class="tab-pane fade show active" id="pills-text" role="tabpanel" aria-labelledby="pills-home-tab"><form id="post" action="/new/post" method="post">
+              <div class="tab-pane fade show active" id="pills-text" role="tabpanel" aria-labelledby="pills-home-tab">
+                <form id="post" action="/new/post" method="post">
                 <div class="row">
                   <div class="col-md-8">
                     <div class="form-group">
@@ -72,8 +72,10 @@
                 </div>
 
 
-              </form></div>
-              <div class="tab-pane fade" id="pills-media" role="tabpanel" aria-labelledby="pills-home-tab"><form id="post" action="/new/post" method="post">
+              </form>
+            </div>
+              <div class="tab-pane fade" id="pills-media" role="tabpanel" aria-labelledby="pills-home-tab">
+                <form id="post" action="/new/post/media" method="post" enctype="multipart/form-data">
                 <div class="row">
                   <div class="col-md-8">
                     <div class="form-group">
@@ -103,7 +105,7 @@
 
                 <div class="form-group">
                   <label>Media</label>
-                  <textarea class="form-control" id="body" name="body" rows="3"></textarea>
+                      <input type="file" name="image" id="image">
                 </div>
 
                 <div class="form-group">
@@ -111,7 +113,8 @@
                 </div>
 
 
-              </form></div>
+              </form>
+            </div>
             </div>
 
 

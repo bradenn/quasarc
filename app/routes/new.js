@@ -121,6 +121,68 @@ router.post('/post', function(req, res, next) {
   }
 });
 
+const upload = require('../services/aws-upload');
+const singleUpload = upload.single('image');
+
+router.post('/post/media', function(req, res, next) {
+  // confirm that user typed same password twice
+  singleUpload(req, res, function(err) {
+    if (err) {
+      return res.status(422).send({
+        errors: [{
+          title: 'Image Upload Error',
+          detail: err.message
+        }]
+      });
+    }
+    if (req.body.title &&
+      req.body.section) {
+      User.findById(req.session.userId)
+        .exec(function(error, user) {
+          if (error) {
+            return next(error);
+          } else {
+            Realm.findOne({
+                name: req.body.section
+              })
+              .exec(function(error, realm) {
+                if (error) {
+                  return next(error);
+                } else {
+                  if (user != null) {
+                
+                    var postData = {
+                      title: req.body.title,
+                      realm: realm._id,
+                      post_type: 'media',
+                      media: req.file.location,
+                      user: user._id,
+                      date: new Date()
+                    }
+
+                    Posts.Text.create(postData, function(error, post) {
+                      if (error) {
+                        return next(error);
+                      } else {
+                        return res.redirect('/p/' + post._id);
+                      }
+                    });
+                  }
+                }
+              });
+          }
+
+        });
+
+
+    } else {
+      var err = new Error('All fields required.');
+      err.status = 400;
+      return next(err);
+    }
+  });
+});
+
 // GET route for reading data
 router.get('/realm', function(req, res, next) {
 

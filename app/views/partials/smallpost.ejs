@@ -4,6 +4,7 @@
   <div class="col-md-12">
     <a href="/p/<%= post[i]._id %>" class="no-hover">
       <div class="card post-card">
+
         <h6 class="card-title-span"><span style="font-size: 90%;"><%= post[i].title %></span><span class="float-right" style="margin-right:16px;">
             <% if(post[i].nsfw != null && post[i].nsfw){ %>
             <span class="badge badge-danger nsfw-badge-show">NSFW</span>
@@ -16,17 +17,19 @@
         <div style="margin-left: 16px;">
           <span class="card-sub-span">
             <small>
-            <a href="/r/<%= post[i].realm.name %>" class="no-bs bold">
-              r/<%= post[i].realm.name %>
-            </a>&bull; posted by
-            <a href="/u/<%= post[i].user.username %>" class="no-bs">
-              u/<%= post[i].user.username %>
-            </a>
+              <a href="/r/<%= post[i].realm.name %>" class="no-bs bold">
+                r/<%= post[i].realm.name %>
+              </a>&bull; posted by
+              <a href="/u/<%= post[i].user.username %>" class="no-bs">
+                u/<%= post[i].user.username %>
+              </a>
             </small>
           </span>
         </div>
 
-
+        <% if(post[i].post_type === "media"){ %>
+          <img src="<%= post[i].media %>" class="post-image" />
+          <% } %>
         <span style=" margin-left: 16px;">
           <ul class="list-inline">
             <li class="list-inline-item">
