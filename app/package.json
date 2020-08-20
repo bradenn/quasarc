@@ -19,7 +19,7 @@
   "homepage": "https://github.com/bradenn/wikit#readme",
   "dependencies": {
     "aws-sdk": "^2.485.0",
-    "bcrypt": "^3.0.6",
+    "bcrypt": "^5.0.0",
     "bcryptjs": "^2.4.3",
     "connect-mongo": "^2.0.3",
     "ejs": "^2.6.1",
